@@ -21,6 +21,7 @@ global.game = true //Se estiver em uma sala aonde existe jogo
 global.world_generated = false //Define que o mundo ainda não foi gerado
 global.world_gen_status = world_generation_status.non_started;
 global.world = noone; //Atualmente o mundo é gerado aqui
+global.map_surface = -1;
 
 scr_map_generation_processing()
 

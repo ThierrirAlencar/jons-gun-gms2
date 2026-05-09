@@ -6,8 +6,8 @@ function src_fade(_t){
 }
 
 function src_gradient(_x, _y){
-	var _gradient_seed = random(99999999999)
-	var seed = (_x * _gradient_seed) ^ (_y * _gradient_seed);
+
+	var seed = (_x * 1836311903) ^ (_y * 2971215073);
 
 	random_set_seed(seed);
 
@@ -70,24 +70,23 @@ function src_fractal_noise(_x, _y){
 
 	var total = 0;
 
-	var frequency = 0.01;
 	var amplitude = 1;
+	var scale = 128;
 
 	var max_value = 0;
 
 	for(var i = 0; i < 4; i++){
 
 		total += scr_perlin_noise(
-			_x * frequency,
-			_y * frequency,
-			1
+			_x,
+			_y,
+			scale
 		) * amplitude;
 
 		max_value += amplitude;
 
 		amplitude *= 0.5;
-		frequency *= 2;
-
+		scale *= 0.5;
 	}
 
 	return total / max_value;

@@ -108,6 +108,7 @@
     {"id":{"name":"scr_fake_noise","path":"scripts/scr_fake_noise/scr_fake_noise.yy",},},
     {"id":{"name":"scr_gamepad","path":"scripts/scr_gamepad/scr_gamepad.yy",},},
     {"id":{"name":"scr_globalFunctions","path":"scripts/scr_globalFunctions/scr_globalFunctions.yy",},},
+    {"id":{"name":"scr_map_surface","path":"scripts/scr_map_surface/scr_map_surface.yy",},},
     {"id":{"name":"scr_perlin_noise","path":"scripts/scr_perlin_noise/scr_perlin_noise.yy",},},
     {"id":{"name":"scr_tileset_handler","path":"scripts/scr_tileset_handler/scr_tileset_handler.yy",},},
     {"id":{"name":"src_world_gen","path":"scripts/src_world_gen/src_world_gen.yy",},},

@@ -1,5 +1,91 @@
 
 //Get the grid side and stores it onto global list
+
+function src_get_biome(_elevation, _temperature, _moisture){
+
+	// Ocean
+	if(_elevation < 0.35){
+		return {
+			tile_index:1,
+			name: "water",
+			colour: c_blue
+		};
+	}
+
+	// Beach
+	if(_elevation < 0.4){
+		return {
+			tile_index:3,
+			name: "sand",
+			colour: c_yellow
+		};
+	}
+
+	// Mountains
+	if(_elevation > 0.8){
+
+		if(_temperature < 0.4){
+			return {
+				tile_index:4,
+				name: "snow_mountain",
+				colour: c_white
+			};
+		}
+
+		return {
+			tile_index:4,
+			name: "mountain",
+			colour: c_gray
+		};
+	}
+
+	// Hot areas
+	if(_temperature > 0.7){
+
+		if(_moisture < 0.3){
+			return {
+				tile_index:3,
+				name: "desert",
+				colour: make_color_rgb(220, 190, 120)
+			};
+		}
+
+		return {
+			tile_index:4,
+			name: "jungle",
+			colour: make_color_rgb(20, 120, 20)
+		};
+	}
+
+	// Cold areas
+	if(_temperature < 0.3){
+
+		return {
+			tile_index:4,
+			name: "taiga",
+			colour: make_color_rgb(50, 120, 80)
+		};
+	}
+
+	// Dry areas
+	if(_moisture < 0.3){
+
+		return {
+			tile_index:4,
+			name: "plains",
+			colour: make_color_rgb(140, 180, 80)
+		};
+	}
+
+	// Default
+	return {
+		tile_index:4,
+		name: "forest",
+		colour: c_green
+	};
+
+}
+
 function src_set_grid(){
 	var _width = room_width;
 	var _height = room_height;
@@ -20,44 +106,28 @@ function src_set_grid(){
 		for(var _x = 0; _x < cols; _x++){
 
 			var noise = scr_perlin_noise(_x , _y, 16);
-			noise = (noise + 1) * 0.5;
 			
-			var tile_name;
-			var tile_colour;
-			var tile_type;
-			var tile_index;
+			var elevation = src_fractal_noise(_x, _y);
+			var moisture = src_fractal_noise(_x + 1000, _y + 1000);
+			var temperature = src_fractal_noise(_x - 1000, _y - 1000);
 			
-			if(noise < 0.3){
-				tile_name = "water";
-				tile_colour = c_blue;
-				tile_type = world_generation_tiles.whater
-				tile_index = 1
-			}
-			else if(noise < 0.4){
-				tile_name = "sand";
-				tile_colour = c_yellow;
-				tile_type = world_generation_tiles.sand
-				tile_index = 2
-			}
-			else if(noise < 0.8){
-				tile_name = "grass";
-				tile_colour = c_green;
-				tile_type = world_generation_tiles.grass
-				tile_index = 4
-			}
-			else{
-				tile_name = "mountain";
-				tile_colour = c_gray;
-				tile_type = world_generation_tiles.mountain
-				tile_index = 3
-			}
+			elevation = (elevation + 1) * 0.5;
+			moisture = (moisture + 1) * 0.5;
+			temperature = (temperature + 1) * 0.5;
+
+			var biome = src_get_biome(
+				elevation,
+				temperature,
+				moisture
+			);
 
 			_early_map[_y][_x] = {
-				height_noise: noise,
-				tile_name: tile_name,
-				tile_colour: tile_colour,
-				tile_type:tile_type,
-				tile_index:tile_index
+				height_noise: elevation,
+				temperature: temperature,
+				moisture: moisture,
+				tile_index:biome.tile_index,
+				tile_name: biome.name,
+				tile_colour: biome.colour
 			};
 
 		}
@@ -81,6 +151,10 @@ function scr_map_generation_processing(){
 				}
 		}
 	}
+	
+	//create surface with map
+	scr_generate_map_surface();
+	
 	global.world_gen_status = world_generation_status.finished
 	global.world_generated = true
 	

@@ -25,5 +25,11 @@ if(global.config_debug and global.game){
 	draw_set_colour(c_white)
 	
 	draw_text(x,y-8,string(global.world[_predict_grid_cell_y][_predict_grid_cell_x].tile_name))
-	draw_text(x,y-16,string(global.world[_predict_grid_cell_y][_predict_grid_cell_x].height_noise))
+	draw_text(x,y-20,string(global.world[_predict_grid_cell_y][_predict_grid_cell_x].height_noise))
+	draw_text(x,y-32,string(global.world[_predict_grid_cell_y][_predict_grid_cell_x].temperature))
+	draw_text(x,y-44,string(global.world[_predict_grid_cell_y][_predict_grid_cell_x].tile_index))
+	
+	if(surface_exists(global.map_surface)){
+		draw_surface(global.map_surface, x, y-64)
+	}
 }
