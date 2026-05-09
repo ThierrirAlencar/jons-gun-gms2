@@ -1,0 +1,1 @@
+current_type = item_kind.frogun

@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"v1",
+  "%Name":"credits.txt",
+  "name":"credits.txt",
+  "parent":{
+    "name":"Extras",
+    "path":"folders/Extras.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

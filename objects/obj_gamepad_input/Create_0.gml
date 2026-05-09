@@ -1,0 +1,1 @@
+//scr_gamepad_vars()
