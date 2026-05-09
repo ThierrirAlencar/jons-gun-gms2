@@ -35,10 +35,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"Sprite31",
-    "path":"sprites/Sprite31/Sprite31.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_perlin_noise",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_perlin_noise",
+  "parent":{
+    "name":"noise_generation",
+    "path":"folders/Scripts/world_generation/noise_generation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

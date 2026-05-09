@@ -1,7 +1,7 @@
 
 
 depth = -999999999999
-if(global.config_debug){
+if(global.config_debug and global.game){
 	move_snap(global.grid_size,global.grid_size)
 	// Horizontal lines
 	for(var _y = 0; _y < array_length(global.world); _y++){

@@ -1,6 +1,6 @@
 {
   "$GMTileSet":"v1",
-  "%Name":"TileSet2",
+  "%Name":"tl_overworld_nature",
   "autoTileSets":[
     {"$GMAutoTileSet":"","%Name":"autotile_1","closed_edge":false,"name":"autotile_1","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[
         299,430,430,430,430,430,430,430,430,430,430,430,430,430,430,430,429,429,429,429,398,398,398,398,431,
@@ -25,13 +25,13 @@
     ],
     "TileDataFormat":1,
   },
-  "name":"TileSet2",
+  "name":"tl_overworld_nature",
   "out_columns":23,
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"Conjuntos de tiles",
-    "path":"folders/Conjuntos de tiles.yy",
+    "name":"overworld",
+    "path":"folders/Conjuntos de tiles/world/overworld.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

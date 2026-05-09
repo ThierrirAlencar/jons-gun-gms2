@@ -1,25 +1,25 @@
 {
   "$GMTileSet":"v1",
-  "%Name":"TileSet3",
+  "%Name":"tl_overworld_ground",
   "autoTileSets":[],
   "macroPageTiles":{
     "SerialiseHeight":0,
     "SerialiseWidth":0,
     "TileSerialiseData":[],
   },
-  "name":"TileSet3",
+  "name":"tl_overworld_ground",
   "out_columns":12,
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"Conjuntos de tiles",
-    "path":"folders/Conjuntos de tiles.yy",
+    "name":"overworld",
+    "path":"folders/Conjuntos de tiles/world/overworld.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
   "spriteId":{
-    "name":"Sprite25",
-    "path":"sprites/Sprite25/Sprite25.yy",
+    "name":"spr_tl_nature",
+    "path":"sprites/spr_tl_nature/spr_tl_nature.yy",
   },
   "spriteNoExport":false,
   "textureGroupId":{

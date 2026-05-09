@@ -13,15 +13,14 @@ draw_set_font(fnt_def_font1)
 //Debug List
 
 global.config_debug = false; 
+global.config_debug_camera = false; 
+
 global.game = true //Se estiver em uma sala aonde existe jogo
 
 //World generation
 global.world_generated = false //Define que o mundo ainda não foi gerado
-global.world_gen_status = world_generation_status.non_started
-global.world = src_set_grid()
+global.world_gen_status = world_generation_status.non_started;
+global.world = noone; //Atualmente o mundo é gerado aqui
 
-for(var _y=0;_y<array_length(global.world);_y++){
-	for(var _x=0;_x<array_length(global.world[_y]);_x++){
-		show_debug_message(global.world[_y][_x].tile_name)
-	}
-}
+scr_map_generation_processing()
+

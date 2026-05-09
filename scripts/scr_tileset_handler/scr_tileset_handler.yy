@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_tileset_handler",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_tileset_handler",
+  "parent":{
+    "name":"world_generation",
+    "path":"folders/Scripts/world_generation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

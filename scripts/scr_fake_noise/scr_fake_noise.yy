@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_fake_noise",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_fake_noise",
+  "parent":{
+    "name":"noise_generation",
+    "path":"folders/Scripts/world_generation/noise_generation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
