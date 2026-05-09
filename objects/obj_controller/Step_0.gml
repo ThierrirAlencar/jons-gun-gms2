@@ -1,4 +1,6 @@
 
+x = mouse_x
+y = mouse_y
 
 
 
@@ -15,3 +17,11 @@ if instance_exists(obj_aim) == false{
 	instance_create_depth(x,y,depth,obj_aim)
 }
 
+
+if(keyboard_check_pressed(vk_f1)){
+	if(global.config_debug){
+		global.config_debug = false
+	}else{
+		global.config_debug = true
+	}
+}

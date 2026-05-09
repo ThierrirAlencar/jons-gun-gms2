@@ -1,5 +1,5 @@
 function scr_config(){
-	
+	global.grid_size = 32
 }
 
 function scr_load_enums(){
