@@ -36,6 +36,5 @@ repeat(random_range(9,15)){
 
 repeat(3){
 	var _orb = instance_create_depth(x,y,depth,obj_xp_orb)
-	_orb.image_blend = c_blue
-	_orb.image_speed = 0.1; 
+	_orb.image_angle = random(360)
 }

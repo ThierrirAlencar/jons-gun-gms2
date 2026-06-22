@@ -1,13 +1,16 @@
 {
   "$GMObject":"",
   "%Name":"obj_gui_interface_handler",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"obj_gui_interface_handler",
   "overriddenProperties":[],
   "parent":{
-    "name":"controllers",
-    "path":"folders/Objetos/controllers.yy",
+    "name":"guis",
+    "path":"folders/Objetos/UI/guis.yy",
   },
   "parentObjectId":null,
   "persistent":false,

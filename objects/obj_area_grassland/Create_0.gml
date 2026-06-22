@@ -1,14 +1,16 @@
 
 #region grass
 	#region general variables (For grass)
+		grass_amount_multiplier = 10
 		grass_sprite = spr_grass
 		grass_frames = sprite_get_number(grass_sprite)
 		grass_texture = sprite_get_texture(grass_sprite, 0)
 
 		grass_width = sprite_get_width(grass_sprite)
 		grass_height = sprite_get_height(grass_sprite)
-
-		grass_count = grass_width*grass_height/2; // grass density 
+		
+		
+		grass_count = image_xscale*image_yscale*grass_amount_multiplier // grass density 
 		grass_color = c_white
 		grass_alpha = 1 
 

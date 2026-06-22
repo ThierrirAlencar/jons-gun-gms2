@@ -33,3 +33,5 @@ baseY = y //posição inicial do objeto como item
 //Decaimento de um item (destruido quando chegar a zero)
 decayment = 0
 image_speed = 0
+
+

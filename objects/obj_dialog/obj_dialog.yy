@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"dialog",
-    "path":"folders/Objetos/controllers/dialog.yy",
+    "path":"folders/Objetos/UI/dialog.yy",
   },
   "parentObjectId":null,
   "persistent":false,

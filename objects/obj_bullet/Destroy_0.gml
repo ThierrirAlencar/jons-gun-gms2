@@ -1,14 +1,11 @@
-if(current_material == material.wather){
-	repeat(8){
-		var _a = instance_create_depth(x+random_range(-10,10),y+8+random_range(0,5),depth,obj_particle);
-		_a.image_speed = 0;
-		_a.sprite_index = spr_whiteParticle;
-		_a.image_index = 1;
-		_a.image_xscale = .6;
-		_a.image_yscale = .6;
-		_a.speed = random_range(0.5,1.5)
-		_a.image_blend = choose(c_white,make_color_rgb(0,157,255));
-		_a.direction = random(360);
-		_a.alarm[0] = 10
+if(last_hit == noone){
+	switch(current_material){
+	case material.iron :
+			var _direction = random(360)
+			scr_material_destruction_smoke(random_range(6,9), random_range(2,5), [0.5,0.9], 1.5,[0,360]);
+		break; 
+	case material.wather: 
+			scr_whater_splash_effect(random_range(8,10));
+		break;
 	}
 }

@@ -17,6 +17,7 @@ if(current_alegiance == bullet_alegiance.enemy){
 		_a.image_blend = choose(c_gray,c_ltgray,c_ltgrey)
 	    _a.sprite_index = spr_whiteParticle;
 	}
+	last_hit = other; //Defines the player as the last hit
 	// Destroi a bala
 	instance_destroy();
 }

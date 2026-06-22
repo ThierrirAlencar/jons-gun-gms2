@@ -3,6 +3,7 @@
 depth = -999999999999
 if(global.config_debug and global.game){
 	move_snap(global.grid_size,global.grid_size)
+	
 	// Horizontal lines
 	for(var _y = 0; _y < array_length(global.world); _y++){
 		var yy = _y * global.grid_size;
@@ -29,7 +30,5 @@ if(global.config_debug and global.game){
 	draw_text(x,y-32,string(global.world[_predict_grid_cell_y][_predict_grid_cell_x].temperature))
 	draw_text(x,y-44,string(global.world[_predict_grid_cell_y][_predict_grid_cell_x].tile_index))
 	
-	if(surface_exists(global.map_surface)){
-		draw_surface(global.map_surface, x, y-64)
-	}
+
 }

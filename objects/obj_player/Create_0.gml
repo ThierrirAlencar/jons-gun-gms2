@@ -5,7 +5,6 @@ max_vida = 100;
 
 
 
-
 //efeitos
 genDust = true
 

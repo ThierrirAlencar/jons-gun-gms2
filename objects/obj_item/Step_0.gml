@@ -21,6 +21,11 @@ function shotgun(target_x,traget_y,trigger){
 				_a.image_index = 2 //Use shell image
 				_a.speed = global.item_data_list[current_type].bullet_speed;
 				_a.damage = global.item_data_list[current_type].bullet_damage;
+				_a.properties.bounciness = 2 //Pode Ricochetear duas vezes na parede;
+				_a.properties.bounciness_speed_reduction = 0.25 //Reduz em 0.5 a velocidade ao ricochetear
+				_a.properties.draw_halo = true;
+				_a.properties.halo_color = c_red; 
+				
 				
 				if(current_state == item_state.onenemy){
 					_a.current_alegiance = bullet_alegiance.enemy
@@ -57,6 +62,12 @@ function shotgun(target_x,traget_y,trigger){
 			recoil_timer--;
 			x += recoil_x * (recoil_timer / recoil_duration);
 			y += recoil_y * (recoil_timer / recoil_duration);
+		}
+		
+		//Animação de ScreenShake
+		if(instance_exists(obj_camera)){
+			var _cam = instance_nearest(x,y,obj_camera)
+			_cam.shake.start(8,30) //Animação de screenshake usando a classe shaker
 		}
 		
 
@@ -112,6 +123,11 @@ function uzi(target_x,traget_y,trigger){
 			var _a = instance_create_depth(x+lengthdir_x(10,image_angle), y+lengthdir_y(10,image_angle), depth, obj_bullet);
 			_a.direction = image_angle+random_range(-16,16) //Inprecisão da arma
 			_a.image_angle = point_direction(x, y, target_x, traget_y);
+			_a.properties.bounciness = 2 //Pode Ricochetear duas vezes na parede;
+			_a.properties.bounciness_speed_reduction = random_range(2.0,3.0)//Reduz em 0.5 a velocidade ao ricochetear
+			_a.properties.draw_halo = true;
+			_a.properties.halo_color = make_color_rgb(255,177,0);
+			
 			if(target_x>x){
 				_a.image_yscale = 0.7;
 			}else{
@@ -168,12 +184,14 @@ function crabhand(target_x,traget_y,trigger){
 		x = current_parent.x + (4 * current_parent.image_xscale);
 		image_yscale = current_parent.image_xscale;
 
+
+
 		depth = current_parent.depth -1; // Sempre estará acima do jogador
 
 		image_angle = point_direction(x, y, target_x, traget_y);
 
 		if (trigger and can_shoot == true) {
-			
+			scr_whater_splash_effect(random_range(16,20))
 			// Calcula o deslocamento do recuo
 			var recoil_dir = image_angle;
 			recoil_x = lengthdir_x(recoil_force*11, recoil_dir);
@@ -193,6 +211,11 @@ function crabhand(target_x,traget_y,trigger){
 				_a.current_material = material.wather
 				_a.speed = global.item_data_list[current_type].bullet_speed;
 				_a.damage = global.item_data_list[current_type].bullet_damage;
+				_a.properties.draw_halo = true;
+				_a.properties.halo_color = c_blue;
+				_a.properties.has_particle_function = true; //Define que serão geradas partículas
+				_a.properties.particle_generation_timeout = 1; //Tempo para gerar particula 
+				_a.particle_function = scr_whater_splash_effect 
 				
 				if(current_state == item_state.onenemy){
 					_a.current_alegiance = bullet_alegiance.enemy

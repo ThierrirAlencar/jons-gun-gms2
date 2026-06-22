@@ -8,8 +8,8 @@
   "name":"obj_aim",
   "overriddenProperties":[],
   "parent":{
-    "name":"controllers",
-    "path":"folders/Objetos/controllers.yy",
+    "name":"components",
+    "path":"folders/Objetos/UI/components.yy",
   },
   "parentObjectId":null,
   "persistent":false,

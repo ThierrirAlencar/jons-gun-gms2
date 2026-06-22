@@ -1,4 +1,5 @@
 if(global.game){
+	
 	if(instance_exists(obj_gamepad_input)){
 		scr_keybindings();
 	}else{
@@ -10,7 +11,43 @@ if(global.game){
 		show_debug_message("Since Instance obj_aim does not exists, creating it")
 		instance_create_depth(x,y,depth,obj_aim)
 	}
+	
+	if instance_exists(obj_camera) == false{
+		show_debug_message("Since Instance obj_camera does not exists, creating it")
+		var app = instance_create_depth(x,y,depth,obj_camera)
+		if(instance_exists(obj_player)){
+			app.target = obj_player.id; 
+			
+			app.camera = view_camera[0];
+			app.cam_w = camera_get_view_width(app.camera);
+			app.cam_h = camera_get_view_height(app.camera);
 
+			app.x = camera_get_view_x(app.camera);
+			app.y = camera_get_view_y(app.camera);
+		}
+	}
+	
+	if instance_exists(obj_gui_interface_handler) == false{
+		show_debug_message("Since Instance obj_gui_interface_handler does not exists, creating it")
+		instance_create_depth(x,y,depth,obj_gui_interface_handler)
+	}
+	
+	if(global.reload){
+		scr_setIngredientDatalist()
+		scr_setWeaponsDataList()
+		scr_gamepad_vars()
+		scr_keybindings();
+		scr_load_enums()
+		scr_config()
+		
+		global.reload = false; //desativa o reload
+	}
+		
+	
+	if(global.world_gen_status = world_generation_status.non_started){
+		//Inicia o processamento de geração de mapa
+		scr_map_generation_processing()
+	}
 
 	if(keyboard_check_pressed(vk_f1)){
 		if(global.config_debug){
@@ -19,6 +56,12 @@ if(global.game){
 			global.config_debug = true
 		}
 	}
+	
+	//Realiza um recarregamento de variaveis
+	if(keyboard_check_pressed(vk_f3)){
+		global.reload = true; 
+	}
+	
 	if(keyboard_check_pressed(vk_f2)){
 		if(global.config_debug_camera){
 			global.config_debug_camera = false
