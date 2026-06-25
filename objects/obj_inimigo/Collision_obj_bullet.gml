@@ -1,5 +1,6 @@
 
 if(other.current_alegiance == bullet_alegiance.player){
+	
 
 	vida -= other.damage
 	image_blend = c_red;

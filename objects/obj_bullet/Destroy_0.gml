@@ -7,5 +7,8 @@ if(last_hit == noone){
 	case material.wather: 
 			scr_whater_splash_effect(random_range(8,10));
 		break;
+	case material.magic: 
+			scr_magic_explosion_effect(random_range(8,10));
+		break;
 	}
 }

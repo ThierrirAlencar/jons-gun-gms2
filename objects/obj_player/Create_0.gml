@@ -1,7 +1,7 @@
 
 spd = 3; // Velocidade do jogador
-vida = 100;
-max_vida = 100;
+vida = global.player_status.current_life;
+max_vida = global.player_status.max_life;
 
 
 

@@ -11,6 +11,11 @@ if(properties.collide_with_walls and can_hit_objects){
 			scr_material_destruction_smoke(random_range(4,12), random_range(1,2), [0.05,0.1],random(2),[-40,40]);
 			
 		}
+		
+		if(current_material == material.wather){
+						scr_material_destruction_debris(random_range(2,4));
+						scr_whater_splash_effect(random_range(6,20))
+		}
 		last_hit = other; //Defines the wall as the last hit
 		instance_destroy()
 	}else{

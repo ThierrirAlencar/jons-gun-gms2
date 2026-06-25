@@ -1,5 +1,13 @@
 function scr_config(){
 	global.grid_size = 32
+	
+	//Screen size stuff
+	global.screen_height_size = 360 // Tamanho 1x de Altura
+	global.screen_width_size = 640 // Tamanho 1x de Largura
+	global.screen_scale = 3 // Define em quantas vezes altura e largura a tela está; 
+	
+	//interface size stuff
+	global.ui_config_scale = 0.75
 }
 
 function scr_load_enums(){
@@ -11,6 +19,24 @@ function scr_load_enums(){
 		finished, //World generated
 	}
 	
+	enum material {
+		wather,
+		iron, //munição normal efeitos normais
+		magic, //Munições mágicas
+		radioative, //munições radioativas
+		fiire //munições de fogo
+	}
+	enum bullet_alegiance{ //Lealdade da bala (entre o player e o inimigo)
+		player,
+		enemy
+	}
+	
+	enum item_type{
+		weapom,
+		construction,
+		ingridient,
+		crafting
+	}
 	enum world_generation_tiles {
 		grass, 
 		whater,

@@ -1,14 +1,6 @@
 
 function fn_noone(){}//initializes empty function
 
-enum material {
-	wather,
-	iron //munição normal efeitos normais
-}
-enum bullet_alegiance{ //Lealdade da bala (entre o player e o inimigo)
-	player,
-	enemy
-}
 
 //Propriedades da bala
 properties = {

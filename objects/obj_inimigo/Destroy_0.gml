@@ -9,6 +9,8 @@ _b.image_yscale = 1;
 _b.image_blend = c_white
 
 
+
+//Flashs que saem do inimigo morto na direção oposta para demonstrar impacto
 repeat(random_range(9,15)){
 	_b = instance_create_depth(x, y, depth-2, obj_particle);
 	_b.sprite_index = spr_explosion_effect
