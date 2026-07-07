@@ -32,7 +32,6 @@ if(instance_exists(obj_player) and !showDialog and hasDialog){
 		draw_sprite_ext(global.icons.up_icon,0,x-16,icon_y,0.5,0.5,0,c_white,1)
 		depth = _depth
 	}
-	
 }
 
 #endregion
