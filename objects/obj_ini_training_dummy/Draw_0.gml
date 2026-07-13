@@ -6,6 +6,7 @@ if(is_down==false){
 	draw_sprite_ext(spr_whiteParticle,1,x-3,y+16,2,1.5,image_angle,c_black,.3)
 }
 
+draw_self()
+
 event_inherited();
 
-draw_self()

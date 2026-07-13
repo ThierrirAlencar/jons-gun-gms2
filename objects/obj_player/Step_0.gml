@@ -35,12 +35,14 @@ x += hsp;
 y += vsp;
 
 
-
-if(mouse_x > x){
-	image_xscale = lerp(image_xscale,1,1);
-}else{
-	image_xscale = lerp(image_xscale,-1,1);
+if(instance_exists(obj_aim)){
+	if(obj_aim.x > x){
+		image_xscale = lerp(image_xscale,1,1);
+	}else{
+		image_xscale = lerp(image_xscale,-1,1);
+	}
 }
+
 
 
 depth = -y; //Manter a altura alinhada

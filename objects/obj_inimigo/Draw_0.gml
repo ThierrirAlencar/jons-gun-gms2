@@ -3,6 +3,14 @@ if(can_be_hited == true){
 	speed = lerp(speed,0,1)
 }
 
+if(alarm[0]!=-1){
+	gpu_set_fog(true,c_white,0,0)
+	draw_self();
+	gpu_set_fog(false,c_white,0,0)
+}else{
+	draw_self()
+}
+
 if(vida<max_vida){
 	var _amount = vida / max_vida*100
 	draw_healthbar(x-8,y+18,x+8,y+20,_amount,c_black,c_red,c_red,0,true,true)

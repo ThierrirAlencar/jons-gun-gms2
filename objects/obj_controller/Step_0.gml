@@ -10,6 +10,12 @@ if(global.game){
 		show_debug_message("Since Instance obj_gamepad_input does not exists, creating it")
 		instance_create_depth(x,y,depth,obj_gamepad_input)
 	}
+	
+	//Creates the ambience object 
+	if(instance_exists(obj_ambience_controller) == false){
+		show_debug_message("Since Instance obj_ambience_controller does not exists, creating it")
+		instance_create_depth(x,y,depth,obj_ambience_controller)
+	}
 
 	//Assign aim object (we gonna use that object to control guns ain and interactions whitin the game)
 	if instance_exists(obj_aim) == false{
@@ -50,6 +56,11 @@ if(global.game){
 		show_debug_message("Since Instance obj_on_game_pause_menu does not exists, creating it, trigered by keyboard input")
 	}
 	
+	//Created the pause obj_player if the global.pause is set to be true;
+	if(global.game and !instance_exists(obj_player)){
+		instance_create_depth(x,y,-99, obj_player);
+		show_debug_message("Since Instance obj_player does not exists, creating it, trigered by keyboard input")
+	}
 	
 	//If reload is needed reload all main data and configs of the game
 	if(global.reload){
@@ -100,6 +111,10 @@ if(global.game){
 						global.pause_menu = true
 					}
 					show_debug_message("Detected functional key pressed:Escape -> setted pause menu as "+string(global.pause_menu))
+				break;
+			case vk_f5:
+				room_restart()
+				show_debug_message("Detected functional key pressed:f5 -> reloading room ")
 				break;
 		}
 	}

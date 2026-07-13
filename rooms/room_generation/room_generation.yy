@@ -272,8 +272,8 @@
   ],
   "name":"room_generation",
   "parent":{
-    "name":"Cenas",
-    "path":"folders/Cenas.yy",
+    "name":"game",
+    "path":"folders/Cenas/game.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

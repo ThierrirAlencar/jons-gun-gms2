@@ -65,3 +65,9 @@ dialogPosition = 0 //the current dialog position
 charIndex       = 0;        // How many characters are visible
 typeSpeed       = 0.5;        // Characters per step (adjust speed)
 typeTimer       = 0;        // Frame counter
+
+
+var _l = instance_create_depth(x,y,depth,obj_light);
+_l.attatched_to = id;
+_l.core_light_radius = 80;
+_l.core_ligth_transparency = 1;

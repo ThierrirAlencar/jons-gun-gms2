@@ -50,6 +50,7 @@ function scr_icon_key_change(){
 				jump_icon:spr_gamepad_jump,
 				attack_icon:spr_gamepad_attack,
 				up_icon:spr_gamepad_up,
+				interaction_icon:undefined
 			}
 		break;
 		case "keyboard":
@@ -57,7 +58,8 @@ function scr_icon_key_change(){
 				cross_icon:spr_keyboard_cross,
 				jump_icon:spr_keyboard_icon_jump,
 				attack_icon:spr_keyboard_icon_attack,
-				up_icon:spr_keyboard_icon_up
+				up_icon:spr_keyboard_icon_up,
+				interaction_icon:spr_keyboard_interaction
 			}
 		break;
 	}

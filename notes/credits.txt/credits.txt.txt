@@ -1,3 +1,11 @@
+
+
+Hey my name is Thierrir Alencar and i'm the developer of this game, most of the time i tried to draw myself the assets used here, but since i'm not a pixel artist i have used a lot of stuff from talented people on the internet
+
+All the great people who shared their works are listed bellow 
+
+(if you saw your asset on my game and i have forgot to mention or you wish to remove it send me a message)
+
 Assets Use:
 Some Icons: https://dreammixgames.itch.io/keyboard-keys-for-ui
 
@@ -9,3 +17,11 @@ https://okano.itch.io/dieback
 
 A thanks for Yuki on itch.io for the font used on many of the menus
 https://yukipixels.itch.io/boldpixels
+
+Thanks for greatdocbrown for the buttons assets used on the game
+https://greatdocbrown.itch.io/gamepad-ui
+
+Thanks for SciGho for the placeholders, grass, stones and flowers used on the game (i changed a lot of stuff berfore using but still his work mostly) 
+
+https://ninjikin.itch.io/grass
+https://ninjikin.itch.io/silly-placeholders

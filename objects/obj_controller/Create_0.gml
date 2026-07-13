@@ -22,7 +22,7 @@ global.reload = false; //Used to reload game data while global.game = true
 
 //Information from now on should be saved and loaded on the future;
 
-//World generation
+//World generation (Proceduraly
 global.world_generated = false //Define que o mundo ainda não foi gerado
 global.world_gen_status = world_generation_status.non_started;
 global.world = noone; //Atualmente o mundo é gerado aqui

@@ -91,7 +91,25 @@ function scr_setWeaponsDataList(){
 			bulletCount:2,
 			bullet_damage:12,
 			bullet_speed:7
-		}
+		},
+		{
+			type:item_type.weapom,
+			item_name:"Double Barrel Shotgun",
+			attack_range:90,
+			cooldown:35,
+			bulletCount:6,
+			bullet_damage:4,
+			bullet_speed:8
+		},
+		{
+			type:item_type.weapom,
+			item_name:"m4a4",
+			attack_range:250,
+			cooldown:5,
+			bulletCount:1,
+			bullet_damage:6,
+			bullet_speed:30
+		},
 	]
 }
 

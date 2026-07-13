@@ -32,3 +32,8 @@ item_to_drop = noone
 seeking_range = 200; 
 //Attack range (onde deve parar para ataque)
 atack_range = 90
+
+var _l = instance_create_depth(x,y,depth,obj_light);
+_l.attatched_to = id;
+_l.core_light_radius = 50;
+_l.core_ligth_transparency = 1;

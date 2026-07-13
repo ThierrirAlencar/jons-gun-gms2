@@ -27,8 +27,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"itens",
-    "path":"folders/Sprites/entitys/itens.yy",
+    "name":"Weapons",
+    "path":"folders/Sprites/entitys/itens/Weapons.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
