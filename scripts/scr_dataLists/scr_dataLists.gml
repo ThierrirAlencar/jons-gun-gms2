@@ -135,6 +135,15 @@ function scr_setWeaponsDataList(){
 			bullet_damage:7.5,
 			bullet_speed:20
 		},
+		{
+			type:item_type.weapom,
+			item_name:"G32",
+			attack_range:250,
+			cooldown:16,
+			bulletCount:1,
+			bullet_damage:5,
+			bullet_speed:18
+		},
 	]
 }
 

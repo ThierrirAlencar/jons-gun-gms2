@@ -59,6 +59,7 @@
     {"name":"inst_12E39A37","path":"rooms/room_debug/room_debug.yy",},
     {"name":"inst_193BD759","path":"rooms/room_debug/room_debug.yy",},
     {"name":"inst_641942BD","path":"rooms/room_debug/room_debug.yy",},
+    {"name":"inst_EF45BE4","path":"rooms/room_debug/room_debug.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -110,6 +111,7 @@
         {"$GMRInstance":"v4","%Name":"inst_12E39A37","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_12E39A37","objectId":{"name":"obj_gun_item","path":"objects/obj_gun_item/obj_gun_item.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":352.0,"y":528.0,},
         {"$GMRInstance":"v4","%Name":"inst_193BD759","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_193BD759","objectId":{"name":"obj_gun_item","path":"objects/obj_gun_item/obj_gun_item.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":416.0,"y":528.0,},
         {"$GMRInstance":"v4","%Name":"inst_641942BD","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_641942BD","objectId":{"name":"obj_gun_item","path":"objects/obj_gun_item/obj_gun_item.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":480.0,"y":528.0,},
+        {"$GMRInstance":"v4","%Name":"inst_EF45BE4","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_EF45BE4","objectId":{"name":"obj_gun_item","path":"objects/obj_gun_item/obj_gun_item.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":352.0,"y":576.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"CollisionsAndMarkers","depth":200,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_279753D9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_279753D9","objectId":{"name":"obj_cos","path":"objects/obj_cos/obj_cos.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.15949038,"scaleX":1.0,"scaleY":7.5,"x":0.0,"y":552.0,},

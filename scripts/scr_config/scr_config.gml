@@ -60,7 +60,8 @@ function scr_load_enums(){
 			m4a4,
 			firethrower,
 			deers_wand,
-			eagles_colt
+			eagles_colt,
+			g32
 		}
 		enum item_state {
 			onground, //Quando a arma estiver no chão
