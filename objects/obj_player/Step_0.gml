@@ -2,8 +2,8 @@
 #region Movimento Básico
 // Movimento básico
 if(!is_dashing){
-var hsp = (global.key_right - global.key_left) * spd;
-var vsp = (global.key_down - global.key_up) * spd;
+hsp = (global.key_right - global.key_left) * spd;
+vsp = (global.key_down - global.key_up) * spd;
 
 // Checagem de colisão e movimentação
 if (place_meeting(x + hsp, y, obj_cos)) {
@@ -22,26 +22,20 @@ if (place_meeting(x, y + vsp, obj_cos)) {
 }
 
 // Animação de balanço
-if (hsp != 0 || vsp != 0) {
-	//valor 1 = tempo de variação (do fim ao inicio) quanto maior menor a duração
-	//valor 2  = potencia de variação (quanto maior maior será a animação)
-    image_angle = sin(current_time * 0.015) * 10; // Oscilação suave ao andar
-} else {
-    image_angle = 0; // Resetar ao parar
-}
+
 
 // Aplicar movimento
 x += hsp;
 y += vsp;
 
-
 if(instance_exists(obj_aim)){
 	if(obj_aim.x > x){
-		image_xscale = lerp(image_xscale,1,1);
+		image_xscale = 1;//lerp(image_xscale,1,1);
 	}else{
-		image_xscale = lerp(image_xscale,-1,1);
+		image_xscale = -1;//lerp(image_xscale,-1,1);
 	}
 }
+
 
 
 
@@ -69,7 +63,6 @@ if(hsp!=0 or vsp!=0){
 
 #endregion 
 
-
 #region dashMovement
 	
 	if(is_dashing){
@@ -95,13 +88,14 @@ if(hsp!=0 or vsp!=0){
 	}
 
 	if(global.key_dash and can_dash){
-		is_dashing = true
-		can_dash = false
-		can_be_hited = false		
-		alarm[2] = 25
-		direction = point_direction(x,y,mouse_x,mouse_y);
-		speed = spd*2
-		
+		if(instance_exists(obj_aim)){
+			is_dashing = true
+			can_dash = false
+			can_be_hited = false		
+			alarm[2] = 25
+			direction = point_direction(x,y,obj_aim.x,obj_aim.y);
+			speed = spd*2
+		}
 	}
 
 #endregion
@@ -109,7 +103,19 @@ if(hsp!=0 or vsp!=0){
 
 #region Player basic
 if(vida<=0){
-	room_restart()
+	global.game = false
+	global.pause_menu = true
+	instance_destroy()
+}
+
+//Spim player when loading
+if(global.game ){
+	if( !checked){
+		image_angle = 0; 
+		checked = true
+	}
+}else{
+		image_angle ++
 }
 
 #endregion

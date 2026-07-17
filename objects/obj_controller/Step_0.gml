@@ -1,8 +1,6 @@
 
 //Checks if game is happening (while in any room where the game is happening) 
 if(global.game){
-
-
 	//Assign binding for gamepad related functions (also by default intantiates all the controls of the game)
 	if(instance_exists(obj_gamepad_input)){
 		scr_keybindings();
@@ -57,10 +55,10 @@ if(global.game){
 	}
 	
 	//Created the pause obj_player if the global.pause is set to be true;
-	if(global.game and !instance_exists(obj_player)){
-		instance_create_depth(x,y,-99, obj_player);
-		show_debug_message("Since Instance obj_player does not exists, creating it, trigered by keyboard input")
-	}
+	//if(global.game and !instance_exists(obj_player)){
+	//	instance_create_depth(x,y,-99, obj_player);
+	//	show_debug_message("Since Instance obj_player does not exists, creating it, trigered by keyboard input")
+	//}
 	
 	//If reload is needed reload all main data and configs of the game
 	if(global.reload){
@@ -74,11 +72,6 @@ if(global.game){
 	}
 		
 	
-	if(global.world_gen_status = world_generation_status.non_started){
-			//Inicia o processamento de geração de mapa
-			scr_map_generation_processing()
-		}
-
 	//check debug and functional keys
 	if(keyboard_check_pressed(vk_anykey)){
 		switch(keyboard_lastkey){
@@ -113,30 +106,34 @@ if(global.game){
 					show_debug_message("Detected functional key pressed:Escape -> setted pause menu as "+string(global.pause_menu))
 				break;
 			case vk_f5:
-				room_restart()
+				global.game = false;
+				alarm[0] = 90
 				show_debug_message("Detected functional key pressed:f5 -> reloading room ")
+				room_restart() //Restart room
 				break;
 		}
 	}
 
 	if(global.config_debug_camera){
-		var _cam_w = camera_get_view_width(view_camera[0]);
-		var _cam_h = camera_get_view_height(view_camera[0]);
+			var _cam_w = camera_get_view_width(view_camera[0]);
+			var _cam_h = camera_get_view_height(view_camera[0]);
 
-		// Center the camera on the aim object
-		var _target_x = obj_aim.x - (_cam_w / 2);
-		var _target_y = obj_aim.y - (_cam_h / 2);
+			// Center the camera on the aim object
+			var _target_x = obj_aim.x - (_cam_w / 2);
+			var _target_y = obj_aim.y - (_cam_h / 2);
 
-		camera_set_view_pos(view_camera[0], _target_x, _target_y);
+			camera_set_view_pos(view_camera[0], _target_x, _target_y);
 	}else{
 		var _cam_w = camera_get_view_width(view_camera[0]);
 		var _cam_h = camera_get_view_height(view_camera[0]);
 
+		if(instance_exists(obj_player)){
 		// Center the camera on the player (obj_player)
 		var _target_x = obj_player.x - (_cam_w / 2);
 		var _target_y = obj_player.y - (_cam_h / 2);
 
 		camera_set_view_pos(view_camera[0], _target_x, _target_y);
+		}
 	}
 	
 	x = mouse_x
@@ -147,7 +144,91 @@ if(global.game){
 		global.player_status.current_life = obj_player.vida;
 	}
 	
-
+	//Reset game
+	global.game_ini_amount = instance_number(obj_inimigo); //Conta a quantidade de inimigos no game
+	if(global.game_ini_amount == 0 and alarm[0]==-1){
+		go_to_next_stage()
+	}
+	
+} else if(!global.game){	
+	//deleted the obj_gamepad_input  
+	if(instance_exists(obj_gamepad_input)){
+		with(obj_gamepad_input){
+			instance_destroy()
+			show_debug_message("Since game ended  deleting obj_gamepad_input")
+		}	
+	}
+	
+	//deleted the obj_ambience_controller  
+	if(instance_exists(obj_ambience_controller)){
+		with(obj_ambience_controller){
+			instance_destroy()
+			show_debug_message("Since game ended  deleting obj_ambience_controller")
+		}	
+	}
+	
+	//deleted the obj_aim  
+	if(instance_exists(obj_aim)){
+		with(obj_aim){
+			window_set_cursor(cr_default)
+			instance_destroy()
+			show_debug_message("Since game ended  deleting obj_aim")
+		}	
+	}
+	
+	//deleted the obj_gui_interface_handler  
+	if(instance_exists(obj_camera)){
+		with(obj_camera){
+			instance_destroy()
+			show_debug_message("Since game ended  deleting obj_camera")
+		}	
+	}
+	
+	//deleted the obj_gui_interface_handler  
+	if(instance_exists(obj_inventory_controller)){
+		with(obj_inventory_controller){
+			instance_destroy()
+			show_debug_message("Since game ended  deleting obj_inventory_controller")
+		}	
+	}
+	
+	//deleted the obj_gui_interface_handler  
+	if(instance_exists(obj_gui_interface_handler)){
+		with(obj_gui_interface_handler){
+			instance_destroy()
+			show_debug_message("Since game ended  deleting obj_gui_interface_handler")
+		}	
+	}
+	
+	//deleted the pause menu 
+	//if(instance_exists(obj_on_game_pause_menu)){
+	//	with(obj_on_game_pause_menu){
+	//		instance_destroy()
+	//		show_debug_message("Since game ended  deleting obj_on_game_pause_menu")
+	//	}	
+	//}
+	
+	if(global.pause_menu and !instance_exists(obj_on_game_pause_menu)){
+		instance_create_depth(x,y,-99, obj_on_game_pause_menu);
+		show_debug_message("Since Instance obj_on_game_pause_menu does not exists, creating it, trigered by keyboard input")
+	}
+	
+	if(instance_exists(obj_on_game_pause_menu)){
+			if(global.pause_menu){
+					global.pause_menu = false
+			}else{
+				global.pause_menu = true
+			}
+			show_debug_message("Detected functional key pressed:Escape -> setted pause menu as "+string(global.pause_menu))
+	}
+	
+	//deleted the pause obj_player i
+	if(instance_exists(obj_player)){
+		with(obj_player){
+			instance_destroy()
+			show_debug_message("Since game ended  deleting obj_player")
+		}	
+	}
 }
 
 

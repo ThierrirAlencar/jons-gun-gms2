@@ -1,5 +1,5 @@
 
-spd = 3; // Velocidade do jogador
+spd = 2.5; // Velocidade do jogador
 vida = global.player_status.current_life;
 max_vida = global.player_status.max_life;
 
@@ -16,6 +16,9 @@ dash_delay = 20
 can_be_hited = true
 
 
+//This is stupid code (go fuck yourself)
+checked = false //checks if game is on (only once)
+
 current_gun = noone //Id da arma que está com ele
 
 
@@ -26,3 +29,5 @@ _l.attatched_to = id;
 _l.core_light_radius = 50;
 _l.secondary_light_radious = 120
 _l.core_ligth_transparency = 1;
+
+alarm[4] = 5

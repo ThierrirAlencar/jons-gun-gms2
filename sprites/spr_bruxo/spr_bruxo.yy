@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"witch",
-    "path":"folders/Sprites/entitys/witch.yy",
+    "path":"folders/Sprites/entitys/enemies/witch.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

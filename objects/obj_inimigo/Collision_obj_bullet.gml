@@ -1,7 +1,16 @@
 
 if(other.current_alegiance == bullet_alegiance.player){
 	
-
+	has_seen_player = true //if  hit by bullet should aways seek for the player
+	
+	//Warns the closest enemy about players presence
+	if(instance_exists(obj_inimigo)){
+		var _closest = instance_nearest(x,y,obj_inimigo)
+		if(distance_to_object(_closest)<=seeking_range){
+			_closest.has_seen_player = true
+		}
+	}
+	
 	vida -= other.damage
 	image_blend = c_red;
 	image_xscale = 0.8;

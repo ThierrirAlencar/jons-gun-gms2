@@ -1,49 +1,69 @@
 
-//feito no formato de função para que apenas aqueles que usarem os states sejam afetados
-function default_state_machine(){
-	if(current_gun == noone){
-		current_state = states.gun_seeking; //Procurando uma arma se nao tiver nenhuma
-	}else{
-		current_state = states.idle
-		if(instance_exists(obj_player)){
-			current_state = states.moving_at_player
+
+if(global.game and !global.pause_menu){
+	//feito no formato de função para que apenas aqueles que usarem os states sejam afetados
+	function default_state_machine(){
+		if(current_gun == noone){
+			current_state = states.gun_seeking; //Procurando uma arma se nao tiver nenhuma
 		}else{
 			current_state = states.idle
-		}
-	}
-	
-	switch(current_state){
-		case states.idle:
-			 image_angle = 0; // Resetar ao parar
-			break;
-		case states.gun_seeking:
-				if(instance_exists(obj_gun_item)){
-					var _nearest_item = instance_nearest(x,y,obj_gun_item);
-					if(_nearest_item.current_state == item_state.onground){
-						mp_potential_step_object(_nearest_item.x,_nearest_item.y,spd,obj_cos)	
-					}
+			if(instance_exists(obj_player)){
+				if(distance_to_object(obj_player)<=seeking_range or has_seen_player){
+					current_state = states.moving_at_player
+					has_seen_player = true
 				}
-			break;
-		case states.moving_at_player:{
-				if(instance_exists(current_gun)){
-					var _current_gun_data = global.gun_data_list[current_gun.current_type]
-					if(instance_exists(obj_player)){
-						if(distance_to_object(obj_player)<=_current_gun_data.attack_range*2 and distance_to_object(obj_player)>_current_gun_data.attack_range){
-							scr_animacaoDeBalanco(0.005, 10)
-							mp_potential_step_object(obj_player.x,obj_player.y,spd,obj_cos)	
-						}else{
-							image_angle = lerp(image_angle,0,0.02);
+			}else{
+				current_state = states.idle
+			}
+		}
+	
+		switch(current_state){
+			case states.idle:
+				 image_angle = 0; // Resetar ao parar
+				break;
+			case states.gun_seeking:
+					if(instance_exists(obj_gun_item)){
+						var _nearest_item = instance_nearest(x,y,obj_gun_item);
+						if(_nearest_item.current_state == item_state.onground){
+							mp_potential_step_object(_nearest_item.x,_nearest_item.y,spd,obj_cos)	
 						}
 					}
-				}else{
-					current_gun = noone;
-				}
-		}
+				break;
+			case states.moving_at_player:{
+					if(instance_exists(current_gun)){
+						var _current_gun_data = global.gun_data_list[current_gun.current_type]
+						if(instance_exists(obj_player)){
+							if(distance_to_object(obj_player)<=_current_gun_data.attack_range*2 and distance_to_object(obj_player)>_current_gun_data.attack_range){
+								scr_animacaoDeBalanco(0.005, 10)
+								mp_potential_step_object(obj_player.x,obj_player.y,spd,obj_cos)	
+							}else{
+								image_angle = lerp(image_angle,0,0.02);
+							}
+						}
+					}else{
+						current_gun = noone;
+					}
+			}
 		
+		}
 	}
-}
 
 
-if(vida<=0){
-	instance_destroy()
+	if(vida<=0){
+		instance_destroy()
+	}
+	
+	var len = 1
+	if(instance_exists(obj_player)){
+		if(obj_player.x > x){
+			len = 1
+		}else{
+			len = -1;
+		}
+	}
+	//Efeito paper quando mudar de lado
+	image_xscale = lerp(image_xscale,len,0.2)
+
+	depth = -y;
 }
+

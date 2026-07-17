@@ -6,3 +6,5 @@ angleDecay = 0;
 directionDecay = 0;
 alphaDecay = 0; //Decaimento em alfa
 speedDecay = 0;
+
+minimun_barrier = 0

@@ -13,4 +13,7 @@ if(is_dashing){
 	direction +=180;
 	speed= spd*2
 	alarm[2] = 14;
+}else{
+	direction = 0;
+	speed = 0;
 }

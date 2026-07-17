@@ -7,6 +7,6 @@ speed -= speedDecay
 image_alpha -= alphaDecay
 
 
-if(speed<0 or image_alpha<=0){
+if(speed<minimun_barrier or image_alpha<=minimun_barrier){
 	instance_destroy();
 }

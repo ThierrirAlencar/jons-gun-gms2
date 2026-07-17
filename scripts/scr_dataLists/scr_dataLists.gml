@@ -1,24 +1,22 @@
 function scr_setWeaponsDataList(){
-	
-	
 	global.gun_data_list = [
 		{
 			type:item_type.weapom,
 			item_name:"shotgun",
-			attack_range:150,
+			attack_range:250,
 			cooldown:30,
 			bulletCount:3,
-			bullet_damage:3,
+			bullet_damage:6,
 			bullet_speed:8
 		},
 		{
 			type:item_type.weapom,
 			item_name:"ak47",
 			attack_range:250,
-			cooldown:2,
-			bulletCount:3,
-			bullet_damage:3,
-			bullet_speed:10
+			cooldown:4,
+			bulletCount:1,
+			bullet_damage:6,
+			bullet_speed:30
 		},
 		{
 			type:item_type.weapom,
@@ -26,16 +24,16 @@ function scr_setWeaponsDataList(){
 			attack_range:40,
 			cooldown:20,
 			bulletCount:0,
-			bullet_damage:6,
+			bullet_damage:10,
 			bullet_speed:0
 		},
 		{
 			type:item_type.weapom,
 			item_name:"uzi",
-			attack_range:250,
+			attack_range:150,
 			cooldown:5,
 			bulletCount:1,
-			bullet_damage:3,
+			bullet_damage:4,
 			bullet_speed:20
 		},
 		{
@@ -44,7 +42,7 @@ function scr_setWeaponsDataList(){
 			attack_range:150,
 			cooldown:10,
 			bulletCount:1,
-			bullet_damage:8,
+			bullet_damage:12,
 			bullet_speed:-1//variavel
 		},
 		{
@@ -53,22 +51,22 @@ function scr_setWeaponsDataList(){
 			attack_range:60,
 			cooldown:40,
 			bulletCount:3,
-			bullet_damage:7,
+			bullet_damage:12,
 			bullet_speed:6
 		},
 		{
 			type:item_type.weapom,
 			item_name:"anubis wand",
-			attack_range:200,
+			attack_range:150,
 			cooldown:25,
 			bulletCount:1,
-			bullet_damage:10,
+			bullet_damage:11,
 			bullet_speed:4
 		},
 		{
 			type:item_type.weapom,
 			item_name:"oxford",
-			attack_range:160,
+			attack_range:150,
 			cooldown:6,
 			bulletCount:1,
 			bullet_damage:5,
@@ -77,10 +75,10 @@ function scr_setWeaponsDataList(){
 		{
 			type:item_type.weapom,
 			item_name:"Automatic Pulse Rifle",
-			attack_range:200,
+			attack_range:150,
 			cooldown:10,
 			bulletCount:1,
-			bullet_damage:5,
+			bullet_damage:6,
 			bullet_speed:20
 		},
 		{
@@ -98,7 +96,7 @@ function scr_setWeaponsDataList(){
 			attack_range:90,
 			cooldown:35,
 			bulletCount:6,
-			bullet_damage:4,
+			bullet_damage:7,
 			bullet_speed:8
 		},
 		{
@@ -107,8 +105,35 @@ function scr_setWeaponsDataList(){
 			attack_range:250,
 			cooldown:5,
 			bulletCount:1,
-			bullet_damage:6,
+			bullet_damage:7,
 			bullet_speed:30
+		},
+		{
+			type:item_type.weapom,
+			item_name:"firethower",
+			attack_range:90,
+			cooldown:0,
+			bulletCount:1,
+			bullet_damage:2,
+			bullet_speed:20
+		},
+		{
+			type:item_type.weapom,
+			item_name:"deers wand",
+			attack_range:150,
+			cooldown:30,
+			bulletCount:1,
+			bullet_damage:11,
+			bullet_speed:5
+		},
+		{
+			type:item_type.weapom,
+			item_name:"Eagle's 21",
+			attack_range:250,
+			cooldown:25,
+			bulletCount:1,
+			bullet_damage:7.5,
+			bullet_speed:20
 		},
 	]
 }

@@ -13,8 +13,8 @@
   "name":"obj_ini_training_dummy",
   "overriddenProperties":[],
   "parent":{
-    "name":"witch",
-    "path":"folders/Objetos/entidades/inimigos/witch.yy",
+    "name":"inimigos",
+    "path":"folders/Objetos/entidades/inimigos.yy",
   },
   "parentObjectId":{
     "name":"obj_inimigo",

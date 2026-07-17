@@ -2,6 +2,120 @@
 defined_tile_wall = 3; //Redefine on script later on
 
 
+#region mushrooms
+	#region general variables (For grass)
+		mushroom_amount_multiplier = 0
+		mushroom_sprite = spr_mushrooms
+		mushroom_frames = sprite_get_number(mushroom_sprite)
+		mushroom_texture = sprite_get_texture(mushroom_sprite, 0)
+		mushroom_width = sprite_get_width(mushroom_sprite)
+		mushroom_height = sprite_get_height(mushroom_sprite)
+		
+		var _chance = 10
+		if(_chance <= random(100)){
+			mushroom_amount_multiplier = 1
+		}
+		
+		mushroom_count = 0;
+		mushroom_color = c_white
+		mushroom_alpha = 1
+		
+		// Wind shader setup
+		//mushroom_shader = shd_grass_wind
+		//u_time           = shader_get_uniform(grass_shader, "u_time")
+		//u_windSpeed      = shader_get_uniform(grass_shader, "u_windSpeed")
+		//u_windStrength   = shader_get_uniform(grass_shader, "u_windStrength")
+		//u_windScale      = shader_get_uniform(grass_shader, "u_windScale")
+		
+		//grass_wind_speed    = 2.2
+		//grass_wind_strength = 3.5
+		//grass_wind_scale    = 0.02
+		
+		// Tile check setup
+		var _tile_size = 32; // adjust if your tiles aren't 32x32
+		var _wall_tile = defined_tile_wall;  // matches tile_definitions_struct.wall elsewhere
+		
+	#endregion
+	#region vertex buffer
+		gpu_set_ztestenable(true);
+		gpu_set_alphatestenable(true);
+		
+		vertex_format_begin()
+		vertex_format_add_position_3d();
+		vertex_format_add_texcoord();
+		vertex_format_add_color();
+		vertex_format_add_texcoord();
+		mushroom_format = vertex_format_end();
+		
+		mushroom_vertex_buffer = vertex_create_buffer();
+		vertex_begin(mushroom_vertex_buffer, mushroom_format)
+		
+		var _placed = 0;
+		var _attempts = 0;
+		var _max_attempts = mushroom_count * 200; // safety cap so this can't hang on a near-solid area
+		
+		while(_placed < mushroom_count && _attempts < _max_attempts){
+			_attempts++;
+			
+			var _x1 = irandom_range(bbox_left, bbox_right)
+			var _y1 = irandom_range(bbox_top, bbox_bottom)
+			
+			// Convert this pixel spot to tile coords and skip if it's a wall
+			var _tx = _x1 div _tile_size;
+			var _ty = _y1 div _tile_size;
+			
+			if(tilemap_get(global.tilemap, _tx, _ty) == _wall_tile){
+				continue; // reroll a new spot instead of placing grass here
+			}
+			
+			var _x2 = _x1 + mushroom_width;
+			var _y2 = _y1 + mushroom_height;
+			var _depth = -_y1;
+			var _frame = irandom(mushroom_frames - 1)
+			var _uvs = sprite_get_uvs(mushroom_sprite, _frame);
+			
+			var _phase = random(1000);
+			
+			// Triangle 1
+			vertex_position_3d(mushroom_vertex_buffer, _x1, _y1, _depth);
+			vertex_texcoord(mushroom_vertex_buffer, _uvs[0], _uvs[1])
+			vertex_color(mushroom_vertex_buffer, mushroom_color, mushroom_alpha);
+			vertex_texcoord(mushroom_vertex_buffer, 1, _phase);
+			
+			vertex_position_3d(mushroom_vertex_buffer, _x2, _y1, _depth);
+			vertex_texcoord(mushroom_vertex_buffer, _uvs[2], _uvs[1])
+			vertex_color(mushroom_vertex_buffer, mushroom_color, mushroom_alpha);
+			vertex_texcoord(mushroom_vertex_buffer, 1, _phase);
+			
+			vertex_position_3d(mushroom_vertex_buffer, _x1, _y2, _depth);
+			vertex_texcoord(mushroom_vertex_buffer, _uvs[0], _uvs[3])
+			vertex_color(mushroom_vertex_buffer, mushroom_color, mushroom_alpha);
+			vertex_texcoord(mushroom_vertex_buffer, 0, _phase);
+			
+			// Triangle 2
+			vertex_position_3d(mushroom_vertex_buffer, _x2, _y1, _depth);
+			vertex_texcoord(mushroom_vertex_buffer, _uvs[2], _uvs[1])
+			vertex_color(mushroom_vertex_buffer, mushroom_color, mushroom_alpha);
+			vertex_texcoord(mushroom_vertex_buffer, 1, _phase);
+			
+			vertex_position_3d(mushroom_vertex_buffer, _x1, _y2, _depth);
+			vertex_texcoord(mushroom_vertex_buffer, _uvs[0], _uvs[3])
+			vertex_color(mushroom_vertex_buffer, mushroom_color, mushroom_alpha);
+			vertex_texcoord(mushroom_vertex_buffer, 0, _phase);
+			
+			vertex_position_3d(mushroom_vertex_buffer, _x2, _y2, _depth);
+			vertex_texcoord(mushroom_vertex_buffer, _uvs[2], _uvs[3])
+			vertex_color(mushroom_vertex_buffer, mushroom_color, mushroom_alpha);
+			vertex_texcoord(mushroom_vertex_buffer, 0, _phase);
+			
+			_placed++;
+		}
+		
+		vertex_end(mushroom_vertex_buffer)
+		vertex_freeze(mushroom_vertex_buffer)
+	#endregion 
+#endregion
+
 #region leafs
 	#region general variables (For grass)
 		grass_amount_multiplier = 2
@@ -111,7 +225,6 @@ defined_tile_wall = 3; //Redefine on script later on
 		vertex_freeze(grass_vertex_buffer)
 	#endregion 
 #endregion
-
 
 #region grass
 	#region general variables (For grass)
@@ -384,6 +497,13 @@ list_of_drawable_buffers = [
 		uses_shader:false
 	},
 	*/
+	//{	
+	//	name:"mushrooms",
+	//	buffer:mushroom_vertex_buffer,
+	//	texture:mushroom_texture,
+	//	format:mushroom_format,
+	//	uses_shader:false
+	//},
 	{	
 		name:"grass",
 		buffer:grass_vertex_buffer,

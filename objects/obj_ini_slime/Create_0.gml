@@ -13,6 +13,9 @@ jumpForce = 6;  // Define a força do pulo
 ground_level = baseY; 
 relative_y = y //Posição de Y onde o desenho se encontra
 
+
+can_pickup_guns = false
+
 // Definição da escala inicial da slime
 xscale = 1;
 yscale = 1;

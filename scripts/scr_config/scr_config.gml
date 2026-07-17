@@ -56,8 +56,11 @@ function scr_load_enums(){
 			oxford,
 			automatic_pulse_rifle,
 			HardM,
+			double_barrel_shotgun,
 			m4a4,
-			double_barrel_shotgun
+			firethrower,
+			deers_wand,
+			eagles_colt
 		}
 		enum item_state {
 			onground, //Quando a arma estiver no chão

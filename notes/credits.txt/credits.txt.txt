@@ -2,7 +2,7 @@
 
 Hey my name is Thierrir Alencar and i'm the developer of this game, most of the time i tried to draw myself the assets used here, but since i'm not a pixel artist i have used a lot of stuff from talented people on the internet
 
-All the great people who shared their works are listed bellow 
+All the great people who shared their works are listed bellow (Even if their work is not present on the final game i used their stuff at some point so heres the deserved credits)
 
 (if you saw your asset on my game and i have forgot to mention or you wish to remove it send me a message)
 
@@ -22,6 +22,11 @@ Thanks for greatdocbrown for the buttons assets used on the game
 https://greatdocbrown.itch.io/gamepad-ui
 
 Thanks for SciGho for the placeholders, grass, stones and flowers used on the game (i changed a lot of stuff berfore using but still his work mostly) 
-
 https://ninjikin.itch.io/grass
 https://ninjikin.itch.io/silly-placeholders
+
+Thanks for XYEzawr for some of the effects used on my game
+https://xyezawr.itch.io/free
+https://xyezawr.itch.io/free-pixel-effects-pack-11-mini-blood-splats
+https://xyezawr.itch.io/gif-free-pixel-effects-pack-5-blood-effects
+https://xyezawr.itch.io/free-pixel-effects-pack-9-mini-fires
