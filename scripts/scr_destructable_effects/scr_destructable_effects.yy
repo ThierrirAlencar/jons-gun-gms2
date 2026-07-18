@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_destructable_effects",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_destructable_effects",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Scripts/Effects.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

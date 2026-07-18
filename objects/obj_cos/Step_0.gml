@@ -1,0 +1,1 @@
+visible = global.config_debug;

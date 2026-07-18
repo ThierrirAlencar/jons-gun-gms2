@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_gunbound_transition",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_gunbound_transition",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Scripts/Effects.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

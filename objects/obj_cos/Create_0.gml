@@ -1,0 +1,1 @@
+wall_material = material.iron

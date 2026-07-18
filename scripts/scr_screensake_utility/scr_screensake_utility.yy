@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_screensake_utility",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_screensake_utility",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Scripts/Effects.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

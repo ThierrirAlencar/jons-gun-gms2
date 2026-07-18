@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_grass_wind",
+  "name":"shd_grass_wind",
+  "parent":{
+    "name":"Shader",
+    "path":"folders/Shader.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

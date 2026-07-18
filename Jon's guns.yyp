@@ -142,6 +142,7 @@
     {"id":{"name":"obj_destructable_explosive_barrel","path":"objects/obj_destructable_explosive_barrel/obj_destructable_explosive_barrel.yy",},},
     {"id":{"name":"obj_destructable","path":"objects/obj_destructable/obj_destructable.yy",},},
     {"id":{"name":"obj_dialog","path":"objects/obj_dialog/obj_dialog.yy",},},
+    {"id":{"name":"obj_fire_remain","path":"objects/obj_fire_remain/obj_fire_remain.yy",},},
     {"id":{"name":"obj_fixed_remain","path":"objects/obj_fixed_remain/obj_fixed_remain.yy",},},
     {"id":{"name":"obj_gamepad_input","path":"objects/obj_gamepad_input/obj_gamepad_input.yy",},},
     {"id":{"name":"obj_gui_interface_handler","path":"objects/obj_gui_interface_handler/obj_gui_interface_handler.yy",},},

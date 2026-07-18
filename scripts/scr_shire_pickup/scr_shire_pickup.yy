@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_shire_pickup",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_shire_pickup",
+  "parent":{
+    "name":"Effects",
+    "path":"folders/Scripts/Effects.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

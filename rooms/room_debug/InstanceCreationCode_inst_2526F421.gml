@@ -1,0 +1,1 @@
+current_type = item_kind.double_barrel_shotgun
