@@ -2,10 +2,7 @@
 
 depth = -999999999999
 if(global.config_debug and global.game){
-	move_snap(global.grid_size,global.grid_size)
-	
 
-	
 	#region World gen related information
 		if(global.world_gen_status!=world_generation_status.not_needed){
 			// Horizontal lines

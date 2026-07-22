@@ -130,7 +130,7 @@ function scr_setWeaponsDataList(){
 			type:item_type.weapom,
 			item_name:"Eagle's 21",
 			attack_range:250,
-			cooldown:25,
+			cooldown:35,
 			bulletCount:1,
 			bullet_damage:7.5,
 			bullet_speed:20
@@ -198,7 +198,6 @@ function scr_setCraftingMaterialsDataList(){
 		
 		
 }
-
 
 function scr_defineItens(){
 	

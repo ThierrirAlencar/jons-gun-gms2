@@ -3,11 +3,7 @@
 //to_mark (more cells to check usualy means larger areas)
 
 function scr_tile_define_walls(){
-	var tile_definitions_struct = {
-		wall:3,
-		walkable:4,
-		walkable_variation:6
-	}	
+	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
 	
 	var _build_tile_set = tl_walls1;
 	var _scan_tile_set = tl_debug_use_tile;
@@ -32,11 +28,7 @@ function scr_tile_define_walls(){
 }
 
 function scr_define_spawns(){
-	var tile_definitions_struct = {
-		wall:3,
-		walkable:4,
-		walkable_variation:6
-	}
+	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
 	
 	var _grid_size = global.grid_size;
 	
@@ -86,12 +78,8 @@ function scr_define_spawns(){
 }
 
 function scr_spawn_enemies(){
-    var tile_definitions_struct = {
-        wall:3,
-        walkable:4,
-        walkable_variation:6
-    }
-    
+	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	
     var _max_enemies_amount = 36;
     var _enemies_spawned = 0;
     var _layer = layer_get_id("layer_instances_active");
@@ -101,79 +89,8 @@ function scr_spawn_enemies(){
     var _wall_check_radius = 32;
     var _min_player_distance = 128;
     
-    var _possible_enemies = [
-        {
-            name:"witch",
-            chance: 30,
-            create_function: function (_x, _y){
-                var _layer = layer_get_id("layer_instances_active");
-                var _en = instance_create_layer(_x,_y,_layer, obj_ini_bruxo);
-                var _weapons = [
-                     item_kind.anubis_wand,
-					 item_kind.anubis_wand
-                ]
-                var _c_gun = _weapons[irandom(1)];
-                
-                var _w = instance_create_layer(_x,_y,_layer, obj_gun_item)
-                _w.current_parent = _en;
-                _w.current_state = item_state.onenemy;
-                _w.current_type = _c_gun;
-                
-                _en.current_gun = _w;
-            },
-        },
-        {
-            name:"rebel bandit",
-            chance: 10,
-            create_function: function (_x, _y){
-                var _layer = layer_get_id("layer_instances_active");
-                var _en = instance_create_layer(_x,_y,_layer, obj_ini_rebel);
-                var _weapons = [
-                     item_kind.shotgun,
-                     item_kind.uzi
-                ]
-                var _c_gun = _weapons[irandom(1)];
-                
-                var _w = instance_create_layer(_x,_y,_layer, obj_gun_item)
-                _w.current_parent = _en;
-                _w.current_state = item_state.onenemy;
-                _w.current_type = _c_gun;
-                
-                _en.current_gun = _w;
-            },
-        },
-        {
-            name:"fire ant",
-            chance: 50,
-            create_function: function (_x, _y){
-                var _layer = layer_get_id("layer_instances_active");
-                var _en = instance_create_layer(_x,_y,_layer, obj_ini_fire_baby_ant);
-            }
-        },
-        {
-            name:"adult fire ant",
-            chance: 10,
-			create_function: function (_x, _y){
-			                var _layer = layer_get_id("layer_instances_active");
-			                var _en = instance_create_layer(_x,_y,_layer, obj_ini_adult_fire_ant);
-			                /*var _weapons = [
-			                     item_kind.firethrower,
-								 item_kind.firethrower
-			                ]
-			               //var _c_gun = _weapons[irandom(1)];
-                
-			                var _w = instance_create_layer(_x,_y,_layer, obj_gun_item)
-			                _w.current_parent = _en;
-			                _w.current_state = item_state.onenemy;
-			                _w.current_type = _c_gun;
-							_w.should_ever_be_visible = false;
-							_w.visible = false
-			                _en.current_gun = _w;
-							*/
-			            },
-        },
-    ]
-    
+    var _possible_enemies = global.permanent_stage_configurations[global.game_stage].enemy_list
+	
     var _valid_tiles = [];
     for(var xx = 0; xx < global.tilemap_w; xx++){
         for(var yy = 0; yy < global.tilemap_h; yy++){
@@ -250,12 +167,8 @@ function scr_spawn_enemies(){
 }
 
 function scr_spawn_chests(){
-    var tile_definitions_struct = {
-        wall:3,
-        walkable:4,
-        walkable_variation:6
-    }
-    
+	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	
     var _chests_spawned = 0;
     var _maximun_chests_allowed = 3;
     
@@ -323,12 +236,8 @@ function scr_spawn_chests(){
 }
 
 function scr_spawn_wall_collisions(){
-    var tile_definitions_struct = {
-        wall:3,
-        walkable:4,
-        walkable_variation:6
-    }
-    
+	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	
     var _layer = layer_get_id("layer_instances_collisions");
     if(!_layer){_layer = layer_create(depth+10,"layer_instances_collisions")}
     
@@ -343,14 +252,9 @@ function scr_spawn_wall_collisions(){
 }
 
 function scr_spawn_map_delimitations(){
-   var tileset_def_layer = tl_florest_tileset
-	var tile_definitions_struct = {
-		wall:3,
-		walkable:6,
-		walkable_variation:4,
-		walkable_variation_2:5
-	}
-    
+    var tileset_def_layer = tl_florest_tileset
+	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	
     var _layer = layer_get_id("layer_instances_active");
     if(!_layer){_layer = layer_create(depth+10,"layer_instances_active")}
     
@@ -383,13 +287,13 @@ function scr_spawn_map_delimitations(){
 					}
 				}
 				
-				var _change = 0.5; //Chance of half percent to spawn explosive barrel
+				var _change = 0.5; //Chance of half percent to spawn tree
 				if(random(100.0)<=_change){
 					var _spawn_x = (xx*32)//+irandom_range(-16,16)
 					var _spawn_y = (yy*32)//+irandom_range(-16,16)
 					//spawn destructable
-					if(place_empty(_spawn_x,_spawn_y,obj_destructable) and place_empty(_spawn_x,_spawn_y,obj_cos)){
-						var _a = instance_create_layer(_spawn_x,_spawn_y,_layer,obj_destructable_explosive_barrel)
+					if(place_empty(_spawn_x,_spawn_y,obj_destructable_tree) and place_empty(_spawn_x,_spawn_y,obj_cos)){
+						var _a = instance_create_layer(_spawn_x,_spawn_y,_layer,obj_destructable_tree)
 					}
 				}
 				
@@ -418,12 +322,8 @@ function scr_tileset_create(){
 	randomize(); //Reseeds game random functions
 	
 	var tileset_def_layer = tl_florest_tileset
-	var tile_definitions_struct = {
-		wall:3,
-		walkable:6,
-		walkable_variation:4,
-		walkable_variation_2:5
-	}
+	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	
 	global.tileset_layer = layer_get_id("layer_tile_01")
 	global.tilemap = layer_tilemap_get_id(global.tileset_layer)
 

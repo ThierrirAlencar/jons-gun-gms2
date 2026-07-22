@@ -10,8 +10,8 @@ if(current_state == item_state.onground){
 
 
 //Draw Hands (for some reason)
-if(current_state == item_state.onhand and instance_exists(obj_aim)){
-	var _angle = point_direction(x,y,obj_aim.x,obj_aim.y)
+if(current_state == item_state.onhand){
+	var _angle = point_direction(x,y,mouse_x,mouse_y)
 	var _height = sprite_get_width(sprite_index)/2;
 	var _x = x;
 	var _y = y+lengthdir_y(2,_angle)

@@ -1,4 +1,4 @@
-
+depth = -9999
 var _w = room_width
 var _h = room_height
 

@@ -28,6 +28,16 @@ if (place_meeting(x, y + vsp, obj_cos)) {
 x += hsp;
 y += vsp;
 
+/*
+if(mouse_x > x){
+	image_xscale = 1;//lerp(image_xscale,1,1);
+}else{
+	image_xscale = -1;//lerp(image_xscale,-1,1);
+}
+*/
+
+
+
 if(instance_exists(obj_aim)){
 	if(obj_aim.x > x){
 		image_xscale = 1;//lerp(image_xscale,1,1);
@@ -35,10 +45,6 @@ if(instance_exists(obj_aim)){
 		image_xscale = -1;//lerp(image_xscale,-1,1);
 	}
 }
-
-
-
-
 depth = -y; //Manter a altura alinhada
 
 
@@ -92,9 +98,9 @@ if(hsp!=0 or vsp!=0){
 			is_dashing = true
 			can_dash = false
 			can_be_hited = false		
-			alarm[2] = 25
+			alarm[2] = 12
 			direction = point_direction(x,y,obj_aim.x,obj_aim.y);
-			speed = spd*2
+			speed = spd*2.5
 		}
 	}
 

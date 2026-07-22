@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"rain",
-    "path":"folders/Objetos/effects/rain.yy",
+    "path":"folders/Objetos/effects/ambience/rain.yy",
   },
   "parentObjectId":null,
   "persistent":false,

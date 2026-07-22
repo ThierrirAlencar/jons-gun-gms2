@@ -1,10 +1,10 @@
 
 
 function create_bullet_debri(b_m = material.iron){
-	var _a = instance_create_depth(x+lengthdir_x(22,image_angle), y+lengthdir_y(20,image_angle), depth, obj_fixed_remain);
+	var _a = instance_create_depth(x, y, 10, obj_fixed_remain);
 	_a.direction =  90 + random_range(-8,8);
-	_a.speed = random_range(2,3);
-	_a.speed_decay = random_range(-0.1,-0.05);
+	_a.speed = random_range(2,4);
+	_a.speed_decay = random_range(0.4,0.01);
 	_a.minimun_barrier = random(3)*-1;
 	_a.alpha_decay = 0.00001;
 	_a.angle_variation = [-5,-5]
@@ -145,19 +145,24 @@ function uzi(target_x,traget_y,trigger){
 			_a.image_angle = point_direction(x, y, target_x, traget_y);
 			_a.properties.bounciness = 2 //Pode Ricochetear duas vezes na parede;
 			_a.properties.bounciness_speed_reduction = random_range(2.0,3.0)//Reduz em 0.5 a velocidade ao ricochetear
-			_a.properties.draw_halo = true;
-			_a.properties.halo_color = make_color_rgb(255,177,0);
+			// _a.properties.draw_halo = true;
+			_a.sprite_index = spr_b_bullet;
+			//_a.properties.halo_color = make_color_rgb(255,177,0);
 			
+			/*
 			if(target_x>x){
 				_a.image_yscale = 0.7;
 			}else{
 				_a.image_yscale = -0.7;
 			}
+			*/
 			
-			_a.image_blend = make_color_rgb(255,177,0);
-			_a.image_index = 3 // bullet image 
+			//_a.image_blend = make_color_rgb(255,177,0);
+			//_a.image_index = 3 // bullet image 
 			_a.damage = dmg;
+			
 			var _cooldown = 5
+			
 			if(current_state == item_state.onenemy){
 				_a.current_alegiance = bullet_alegiance.enemy
 				_cooldown*=3
@@ -606,22 +611,25 @@ function m4o4(target_x,traget_y,trigger){
 		image_angle = point_direction(x, y, target_x, traget_y);
 
 		if (trigger and can_shoot == true) {
-			var _a = instance_create_depth(x+lengthdir_x(10,image_angle), y+lengthdir_y(10,image_angle), depth, obj_bullet);
+			var _a = instance_create_depth(x+lengthdir_x(16,image_angle), y+lengthdir_y(13,image_angle), depth, obj_bullet);
 			_a.direction = image_angle+random_range(-6,6) //Inprecisão da arma
 			_a.image_angle = point_direction(x, y, target_x, traget_y);
 			_a.properties.bounciness = 0
-			_a.properties.draw_halo = true;
-			_a.properties.halo_color = make_color_rgb(255,177,0);
+			//_a.properties.draw_halo = true;
+			//_a.properties.halo_color = make_color_rgb(255,177,0);
 			_a.damage = dmg
 			
+			_a.sprite_index = spr_hyper_bullet
+			
 			if(target_x>x){
-				_a.image_yscale = 0.7;
+				_a.image_yscale = 0.5;
 			}else{
-				_a.image_yscale = -0.7;
+				_a.image_yscale = -0.5;
 			}
+			_a.image_xscale = 0.5
 			
 			_a.image_blend = make_color_rgb(255,177,0);
-			_a.image_index = 3 // bullet image 
+			_a.image_index = 0 // bullet image 
 			_a.properties.damage = dmg;
 			var _cooldown = 4
 			if(current_state == item_state.onenemy){
@@ -644,14 +652,18 @@ function m4o4(target_x,traget_y,trigger){
 			
 			//Particula de tiro
 			
-			var _b = instance_create_depth(x+lengthdir_x(16,image_angle), y+lengthdir_y(16,image_angle), depth-2, obj_particle);
-			_b.sprite_index = spr_explosion_effect
-			_b.image_xscale = .4;
-			_b.image_speed = 0;
-			_b.alarm[0] = 5
-			_b.image_angle = image_angle+180
-			_b.image_yscale = .4;
-			_b.image_blend = make_color_rgb(255,177,0);
+			//var _b = instance_create_depth(x+lengthdir_x(20,image_angle), y+lengthdir_y(8,image_angle), depth-2, obj_particle);
+			with(_a){
+				var _b = instance_create_depth(x, y, depth-2, obj_particle);
+				_b.sprite_index = spr_explosion_effect
+				_b.image_xscale = .4;
+				_b.image_speed = 0;
+				_b.alarm[0] = 5
+				_b.image_angle = image_angle+180
+				_b.image_yscale = .4;
+				_b.image_blend = make_color_rgb(255,177,0);
+			}
+			
 			
 			create_bullet_debri()
 		}
@@ -935,6 +947,12 @@ function ak47(target_x,traget_y,trigger){
 			_b.image_angle = image_angle+180
 			_b.image_yscale = .4;
 			_b.image_blend = make_color_rgb(255,177,0);
+			
+			create_bullet_debri()
+			//screenshake
+			if(instance_exists(obj_camera)){
+				obj_camera.shake_start(10,10)
+			}
 		}
 
 		// Animação do recuo
@@ -994,10 +1012,12 @@ switch(current_state){
 		depth = current_parent.depth - 8
 		var aim_x = mouse_x;
 		var aim_y = mouse_y
+
 		if(instance_exists(obj_aim)){
 			aim_x = obj_aim.x;
 			aim_y = obj_aim.y;
 		}
+		
 		//Switch to oninventory
 		if(global.inventory_gun_slot_selected_current != current_inventory_slot){
 			current_state = item_state.onInventory

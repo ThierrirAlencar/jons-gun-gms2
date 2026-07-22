@@ -5,7 +5,7 @@ scr_keybindings();
 scr_load_enums()
 scr_config()
 scr_defineItens() 
-
+scr_set_stage_configuration() // Carrega todas as configs de mundo
 //Lista de objetos essenciais para o funcionamento do jogo
 
 draw_set_font(fnt_def_font1)
@@ -18,6 +18,9 @@ global.config_debug_camera = false;
 global.pause_menu = false;
 global.game = false  //Se estiver em uma sala aonde existe jogo
 
+
+//Stages struct
+
 global.reload = false; //Used to reload game data while global.game = true
 
 
@@ -29,7 +32,7 @@ global.world_gen_status = world_generation_status.non_started;
 global.world = noone; //Atualmente o mundo é gerado aqui
 global.map_surface = -1;
 
-
+global.ambient_surface_light = noone
 
 //Inventory
 global.gui_component_easy_access_inventory = noone

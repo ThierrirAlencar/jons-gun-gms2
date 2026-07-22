@@ -1,6 +1,6 @@
 //Since its a human is going to deploy some remains
 
-repeat(random(15)){
+repeat(irandom_range(15,30)){
 	var _a = instance_create_depth(x+random_range(-8,8),y+random_range(-8,8),depth,obj_fixed_remain)
 	_a.speed = random_range(.1, 2.5)
 	_a.image_index = random(_a.image_number-1)

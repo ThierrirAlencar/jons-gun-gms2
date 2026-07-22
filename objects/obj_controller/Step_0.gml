@@ -12,8 +12,11 @@ if(global.game){
 	//Creates the ambience object 
 	if(instance_exists(obj_ambience_controller) == false){
 		show_debug_message("Since Instance obj_ambience_controller does not exists, creating it")
-		instance_create_depth(x,y,depth,obj_ambience_controller)
+		var _layer = layer_get_id("layer_ambience_active");
+		if(!_layer){_layer = layer_create(-10,"layer_ambience_active")}
+		instance_create_layer(x,y,_layer,obj_ambience_controller)
 	}
+
 
 	//Assign aim object (we gonna use that object to control guns ain and interactions whitin the game)
 	if instance_exists(obj_aim) == false{
