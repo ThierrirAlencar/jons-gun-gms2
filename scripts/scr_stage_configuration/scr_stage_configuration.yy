@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_stage_configuration",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_stage_configuration",
+  "parent":{
+    "name":"non_procedural_generation",
+    "path":"folders/Scripts/world_generation/non_procedural_generation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
