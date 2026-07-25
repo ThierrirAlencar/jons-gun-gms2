@@ -1,19 +1,15 @@
-show_debug_message(
-    "Camera: " + string(camera) +
-    " | Active: " + string(view_camera[0]) +
-    " | Target: " + string(target.object_index)
-);
+
 
 // --- Follow target ---
 if(target != noone && instance_exists(target)){
-	var _target_x = target.x - cam_w*0.05
-	var _target_y = target.y - cam_h*0.05
+	var _target_x = target.x - cam_w/2//*0.05
+	var _target_y = target.y - cam_h/2//*0.05
 
 	x = lerp(x, _target_x, follow_speed);
 	y = lerp(y, _target_y, follow_speed);
 
-	x = clamp(x, 0, max(0, room_width));
-	y = clamp(y, 0, max(0, room_height));
+	x = clamp(x, 0, max(0, room_width - cam_w));
+	y = clamp(y, 0, max(0, room_height - cam_h));
 }
 
 // --- Clamp to room bounds ---
@@ -22,13 +18,13 @@ if (clamp_to_room)
     x = clamp(
         x,
         0,
-        max(0, room_width)
+        max(0, room_width - cam_w)
     );
 
     y = clamp(
         y,
         0,
-        max(0, room_height)
+        max(0, room_height  - cam_h)
     );
 }
 

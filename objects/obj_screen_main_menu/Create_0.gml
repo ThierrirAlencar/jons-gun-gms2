@@ -1,18 +1,18 @@
 function option_play(){
 	global.world_gen_status = world_generation_status.not_needed;
-	scr_reload()
-	//room_goto(room_gmap_01)
+	//obj_game_controller.alarm[0] = 90
+	global.game_loading = true
 	scr_gunbound_transition(c_black,0.1,room_gmap_01)
-	obj_controller.alarm[0] = 180 //90 minutes to load game after transition
-	global.game_stage = 1;
-	global.game_loading = true;
+
+	//obj_game_controller._start_session()
+	//room_goto(room_gmap_01)
 }
+
 
 function option_debug(){
 	global.world_gen_status = world_generation_status.not_needed //Geração não nescessária (não será gerado nada)
-	scr_reload()
+	obj_game_controller._start_session()
 	room_goto(room_debug)
-	global.game = true; //Inicia o jogo
 }
 
 function option_blank(){

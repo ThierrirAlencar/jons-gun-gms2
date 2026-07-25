@@ -38,13 +38,14 @@ repeat(random_range(9,15)){
 
 var _c = instance_create_depth(x,y,depth+16, obj_fixed_remain);
 _c.sprite_index = sprite_index;
+_c.image_index = image_index
 _c.image_angle = choose(90,180)+random_range(-16,16);
 _c.image_blend  = c_gray;
 _c.speed_decay = 0.1;
 _c.angle_variation = [-1,1]
 _c.direction = random(360)
 _c.speed = random_range(3,5);
-_c.alpha_decay = 0.0005;
+_c.alpha_decay = 0.0002;
 _c.image_alpha = .9
 _c.image_speed = 0;
 

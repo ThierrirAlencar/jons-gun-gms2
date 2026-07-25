@@ -1,7 +1,7 @@
-event_inherited();
 
+if(global.game_active and !global.game_paused){
 #region jump_animation_and_movement
-
+event_inherited();
 // Definição do nível do chão baseado na posição inicial
 ground_level = baseY;
 
@@ -67,3 +67,4 @@ image_xscale = xscale;
 image_yscale = yscale;
 
 #endregion
+}

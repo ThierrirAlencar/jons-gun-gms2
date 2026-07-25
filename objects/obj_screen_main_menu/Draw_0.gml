@@ -5,7 +5,7 @@ draw_set_font(fnt_title_font2);
 	var _sprite_logo = spr_logo;
 	var _xx = (global.screen_width_size*global.screen_scale)
 	var _yy = (global.screen_height_size*global.screen_scale)
-	draw_sprite(_sprite_logo,0,_xx/2,_yy/2)
+	draw_sprite(_sprite_logo,0,room_width/2,(room_height/2)-(sprite_get_height(_sprite_logo)/2))
 #endregion
 
 #region Options
@@ -13,9 +13,22 @@ var _mouse_x = device_mouse_x_to_gui(0);
 var _mouse_y = device_mouse_y_to_gui(0);
 hovered_index = -1; // instance var, so other events can react to it
 
+
+draw_set_alpha(.5)
+draw_set_colour(c_black)
+draw_rectangle(
+	(global.screen_width_size/2)-128,
+	180,
+	(global.screen_width_size/2)+128,
+	464,
+	false
+)
+draw_set_alpha(1)
+draw_set_colour(c_white)
+
 for(var i = 0; i < array_length(menu_options); i++){
 	var _text = menu_options[i].name;
-	var _x = (global.screen_width_size/2)-128;
+	var _x = (global.screen_width_size/2)-16;
 	var _float = sin(time*1.5+i*0.8) * 3;
 	var _y = 200+(i*32) + _float;
 	var _scale = 1;
@@ -37,21 +50,24 @@ for(var i = 0; i < array_length(menu_options); i++){
 	}
 	
 	if(selected_index == i){
-		_x = lerp(_x,_x-128,0.1);
+		//_x = lerp(_x,_x-96,0.1);
 		_scale = 1.75; 
 		
-		_text_w = string_width(_text) * _scale;
-		_text_h = string_height(_text) * _scale;
+		_text_w = string_width(_text) ;
+		_text_h = string_height(_text) ;
 		
 		//Shake effect on the selected option
-		var _shake_amount = 0.3;
+		var _shake_amount = 0.15;
 		_x += sin(time*40 + i*10) * _shake_amount;
 		_y += sin(time*53 + i*10) * _shake_amount;
 		
-		draw_set_colour(_color);
-		draw_rectangle(_x,_y+_text_h+4,_x+_text_w, _y+_text_h+8,false);
-		
-		scr_text_wave(_x,_y,8,6,_text)
+		var _nine = sprite_get_nineslice(spr_textbox)
+		_nine.tilemode[nineslice_top] = nineslice_repeat;
+
+		draw_set_colour(c_white);
+		draw_sprite_stretched_ext(spr_menubox_frame, 0, _x-32, _y-4, _text_w+64, _text_h+8,c_red,1)
+		//draw_rectangle(_x,_y+_text_h+2,_x+_text_w, _y+_text_h+4,false);
+		draw_text(_x,_y,_text)
 		
 	}else{
 			draw_text_ext_transformed(_x,_y,_text,1,100,_scale,_scale,_angle);

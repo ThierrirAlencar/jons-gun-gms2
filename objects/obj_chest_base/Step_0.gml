@@ -2,7 +2,7 @@
 
 depth = -y;
 
-if(has_itens and instance_exists(obj_player)){
+if(has_itens and instance_exists(obj_player) and global.game_active){
 	//colliding player allow interaction with player
 	if(distance_to_object(obj_player)<=interaction_distance and global.key_interaction){
 	

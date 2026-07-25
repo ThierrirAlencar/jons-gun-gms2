@@ -3,7 +3,7 @@
 //to_mark (more cells to check usualy means larger areas)
 
 function scr_tile_define_walls(){
-	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	var tile_definitions_struct = global.permanent_stage_configurations[global.session.stage].generation_config.tileset;
 	
 	var _build_tile_set = tl_walls1;
 	var _scan_tile_set = tl_debug_use_tile;
@@ -28,7 +28,7 @@ function scr_tile_define_walls(){
 }
 
 function scr_define_spawns(){
-	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	var tile_definitions_struct = global.permanent_stage_configurations[global.session.stage].generation_config.tileset;
 	
 	var _grid_size = global.grid_size;
 	
@@ -68,28 +68,46 @@ function scr_define_spawns(){
 		var _main_layer = layer_get_id("layer_instances_active");
 		obj_player.x = _allowed_x;
 		obj_player.y = _allowed_y;
+
 		//If layer does not exists create one 
 		if(!_main_layer){_main_layer = layer_create(depth+10,"layer_instances_active")}
-	
-		var _weapom = instance_create_layer(obj_player.x, obj_player.y,_main_layer,obj_gun_item)
-		_weapom.current_type = item_kind.eagles_colt;
 		
+		//Will begin with an weapon if does not have one
+		if(global.inventory_gun_list[0] == noone and global.inventory_gun_list[1] == noone and global.inventory_gun_list[2] == noone ){
+					var _weapom = instance_create_layer(obj_player.x, obj_player.y,_main_layer,obj_gun_item)
+					_weapom.current_type = item_kind.g32;
+					with(_weapom){
+						current_state = item_state.onhand;
+						//adds to inventory and assigns current_inventory_slot to espected position
+						current_inventory_slot = obj_inventory_controller.addWeaponToGunSlot({
+							name:global.gun_data_list[current_type].item_name,
+							item_id:id,
+							kind: current_type,
+							sprite:spr_g32
+						})
+						current_parent = instance_find(obj_player,0)
+						obj_player.current_gun = id;
+						image_alpha = 1
+						image_xscale = 1;
+						image_yscale = 1;
+						decayment = 0;
+					}
+		}		
 	}
 }
 
 function scr_spawn_enemies(){
-	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
-	
-    var _max_enemies_amount = 36;
+	var tile_definitions_struct = global.permanent_stage_configurations[global.session.stage].generation_config.tileset;
+    var _max_enemies_amount = global.permanent_stage_configurations[global.session.stage].number_of_enemies;
     var _enemies_spawned = 0;
     var _layer = layer_get_id("layer_instances_active");
     if(!_layer){_layer = layer_create(depth+10,"layer_instances_active")}
     
     // NEW: validity thresholds
     var _wall_check_radius = 32;
-    var _min_player_distance = 128;
+    var _min_player_distance = 256;
     
-    var _possible_enemies = global.permanent_stage_configurations[global.game_stage].enemy_list
+    var _possible_enemies = global.permanent_stage_configurations[global.session.stage].enemy_list
 	
     var _valid_tiles = [];
     for(var xx = 0; xx < global.tilemap_w; xx++){
@@ -167,10 +185,10 @@ function scr_spawn_enemies(){
 }
 
 function scr_spawn_chests(){
-	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	var tile_definitions_struct = global.permanent_stage_configurations[global.session.stage].generation_config.tileset;
 	
     var _chests_spawned = 0;
-    var _maximun_chests_allowed = 3;
+    var _maximun_chests_allowed = global.permanent_stage_configurations[global.session.stage].number_of_chests;
     
     var _wall_check_radius = 32;
     var _min_player_distance = 128;
@@ -236,7 +254,7 @@ function scr_spawn_chests(){
 }
 
 function scr_spawn_wall_collisions(){
-	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	var tile_definitions_struct = global.permanent_stage_configurations[global.session.stage].generation_config.tileset;
 	
     var _layer = layer_get_id("layer_instances_collisions");
     if(!_layer){_layer = layer_create(depth+10,"layer_instances_collisions")}
@@ -253,7 +271,7 @@ function scr_spawn_wall_collisions(){
 
 function scr_spawn_map_delimitations(){
     var tileset_def_layer = tl_florest_tileset
-	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	var tile_definitions_struct = global.permanent_stage_configurations[global.session.stage].generation_config.tileset;
 	
     var _layer = layer_get_id("layer_instances_active");
     if(!_layer){_layer = layer_create(depth+10,"layer_instances_active")}
@@ -267,12 +285,14 @@ function scr_spawn_map_delimitations(){
 			){
                 // +16,+16 shifts spawn point to the tile's center, matching the origin
                // instance_create_depth(xx*32 + 16, yy*32 + 16, _layer, obj_area_grassland);
-				var _change = 15; //Chance of 60 percent to spawn something
+				var _change = 25; //Chance of 60 percent to spawn something
+				
 				if(irandom(100)<=_change){
-					var _spawn_x = (xx*32)//+irandom_range(-16,16)
-					var _spawn_y = (yy*32)//+irandom_range(-16,16)
+					var _spawn_x = (xx*32)+irandom_range(-6,6)
+					var _spawn_y = (yy*32)+irandom_range(-6,6)
 					//spawn destructable
-					if(place_empty(_spawn_x,_spawn_y,obj_destructable) and place_empty(_spawn_x,_spawn_y,obj_cos)){
+					var _cos = !collision_circle(_spawn_x,_spawn_y,8,obj_destructable,true,true)
+					if(_cos and place_empty(_spawn_x,_spawn_y,obj_cos)){
 						var _a = instance_create_layer(_spawn_x,_spawn_y,_layer,obj_destructable_brush)
 					}
 				}
@@ -282,18 +302,35 @@ function scr_spawn_map_delimitations(){
 					var _spawn_x = (xx*32)//+irandom_range(-16,16)
 					var _spawn_y = (yy*32)//+irandom_range(-16,16)
 					//spawn destructable
-					if(place_empty(_spawn_x,_spawn_y,obj_destructable) and place_empty(_spawn_x,_spawn_y,obj_cos)){
+					var _cos = !collision_circle(_spawn_x,_spawn_y,8,obj_destructable,true,true)
+					if(_cos and place_empty(_spawn_x,_spawn_y,obj_destructable) and place_empty(_spawn_x,_spawn_y,obj_cos)){
 						var _a = instance_create_layer(_spawn_x,_spawn_y,_layer,obj_destructable_brush_purple)
 					}
 				}
 				
-				var _change = 0.5; //Chance of half percent to spawn tree
+				var _change = 5; //Chance of five percent to spawn tree
 				if(random(100.0)<=_change){
 					var _spawn_x = (xx*32)//+irandom_range(-16,16)
 					var _spawn_y = (yy*32)//+irandom_range(-16,16)
 					//spawn destructable
-					if(place_empty(_spawn_x,_spawn_y,obj_destructable_tree) and place_empty(_spawn_x,_spawn_y,obj_cos)){
+					var _cos = !collision_circle(_spawn_x,_spawn_y,8,obj_destructable,true,true)
+					if(_cos and place_empty(_spawn_x,_spawn_y,obj_destructable) and place_empty(_spawn_x,_spawn_y,obj_cos)){
 						var _a = instance_create_layer(_spawn_x,_spawn_y,_layer,obj_destructable_tree)
+					}
+				}
+				
+				_chance = 10;
+				if(random(100.0)<=_change){
+					var _spawn_x = (xx*32)//+irandom_range(-16,16)
+					var _spawn_y = (yy*32)//+irandom_range(-16,16)
+					repeat(random_range(6,10)){
+										var _x = _spawn_x+random_range(-16,16)
+										var _y = _spawn_y+random_range(-16,16)
+	
+										var _a = instance_create_depth(_x,_y, 99, obj_fixed_remain);
+										_a.image_speed = 0;
+										_a.sprite_index = spr_leaf_remains;
+										_a.image_index = 0
 					}
 				}
 				
@@ -309,7 +346,8 @@ function scr_spawn_map_delimitations(){
 					var _spawn_x = (xx*32)//+irandom_range(-16,16)
 					var _spawn_y = (yy*32)//+irandom_range(-16,16)
 					//spawn destructable
-					if(place_empty(_spawn_x,_spawn_y,obj_destructable) and place_empty(_spawn_x,_spawn_y,obj_cos)){
+					var _cos = !collision_circle(_spawn_x,_spawn_y,8,obj_destructable,true,true)
+					if(_cos and place_empty(_spawn_x,_spawn_y,obj_destructable) and place_empty(_spawn_x,_spawn_y,obj_cos)){
 						var _a = instance_create_layer(_spawn_x,_spawn_y,_layer,obj_destructable_egg)
 					}	
 				}
@@ -322,7 +360,7 @@ function scr_tileset_create(){
 	randomize(); //Reseeds game random functions
 	
 	var tileset_def_layer = tl_florest_tileset
-	var tile_definitions_struct = global.permanent_stage_configurations[global.game_stage].generation_config.tileset;
+	var tile_definitions_struct = global.permanent_stage_configurations[global.session.stage].generation_config.tileset;
 	
 	global.tileset_layer = layer_get_id("layer_tile_01")
 	global.tilemap = layer_tilemap_get_id(global.tileset_layer)
@@ -351,15 +389,16 @@ function scr_tileset_create(){
 	
 	_vector.reset();
 	
-	var _change = 40  //irandom_range(25,50); //Lower -= Corridors; Larger = Larger areas
+	var _change = global.permanent_stage_configurations[global.session.stage].generation_config.g_data.change //40  //irandom_range(25,50); //Lower -= Corridors; Larger = Larger areas
+	var _to_mark_min = global.permanent_stage_configurations[global.session.stage].generation_config.g_data.to_mark //Total Amount of cells
 	
 	var px = irandom_range(1, global.tilemap_w-2);
 	var py = irandom_range(1, global.tilemap_h-2);
 	
 	var marked = 0;
 	var _max_cells = (global.tilemap_w - 2) * (global.tilemap_h - 2);
-	var to_mark = min(900, _max_cells * 0.6);
-	var _walker_count = 1;
+	var to_mark = min(_to_mark_min, _max_cells * 0.6);
+	var _walker_count = global.permanent_stage_configurations[global.session.stage].generation_config.g_data.walker_count
 	var _cells_per_walker = to_mark / _walker_count ;
 	var marked = 0;
 	var _safety = 0;
@@ -385,6 +424,7 @@ function scr_tileset_create(){
 			
 			*/
 			
+			//Think about a way to custom that later
 			var _radius = choose(0,1,1,1,2); // 0 = corridors only, 1-2 = wider rooms
 			for(var xx = -_radius; xx <= _radius; xx++){
 			    for(var yy = -_radius; yy <= _radius; yy++){

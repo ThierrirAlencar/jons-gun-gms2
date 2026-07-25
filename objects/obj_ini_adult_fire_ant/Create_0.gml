@@ -20,7 +20,7 @@ atack_range = 90 // used as the "stop and start shooting" range, keeps your exis
 seeking_range = 160
 // Fire-throwing specific
 shoot_cooldown_timer = 0; // counts down, blocks firethrower() calls until 0
-
+flame_direction_changer = -90
 var _l = instance_create_depth(x,y,depth,obj_light);
 _l.attatched_to = id;
 _l.core_light_radius = 50;

@@ -10,8 +10,8 @@ u_windScale      = shader_get_uniform(grass_shader, "u_windScale")
 	
 //Wind less potent cuz i guess so :)
 		
-grass_wind_speed    = 2.2
-grass_wind_strength = 3.5
+grass_wind_speed    = 1.2
+grass_wind_strength = 2.5
 grass_wind_scale    = 0.02
 
 can_hold_a_bullet = true;

@@ -1,5 +1,5 @@
 
-if(global.game){
+if(global.game_active){
 	if(attatched_to){
 		was_ever_attatched = true
 		if(instance_exists(attatched_to)){

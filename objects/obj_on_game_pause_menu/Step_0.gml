@@ -31,7 +31,7 @@ if(keyboard_check_pressed(vk_space)){
 }
 
 if(!global.pause_menu){
-	instance_destroy();
+	//instance_destroy();
 }
 
 time += delta_time / 1000000; // convert microseconds → seconds, grows every frame

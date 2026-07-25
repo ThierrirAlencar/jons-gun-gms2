@@ -8,6 +8,9 @@ function scr_config(){
 	
 	//interface size stuff
 	global.ui_config_scale = 0.75
+	
+	//Mouse Sensitivity
+	global.config_mouse_sense = 0.4 //Higher = Faster
 }
 
 function scr_load_enums(){

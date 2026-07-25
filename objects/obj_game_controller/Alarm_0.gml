@@ -1,0 +1,1 @@
+_load_stage(global.session.stage)

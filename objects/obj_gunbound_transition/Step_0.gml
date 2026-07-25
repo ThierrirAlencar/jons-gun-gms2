@@ -7,6 +7,9 @@ switch(estado){
 		if(y2 >= y2max - 10){
 			y2 = y2max;
 			estado = "abrindo";	
+			if(global.session.active==false){
+				obj_game_controller._start_session()
+			}
 			room_goto(room_destino);
 		}
 		

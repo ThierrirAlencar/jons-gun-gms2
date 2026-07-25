@@ -1,14 +1,18 @@
 
 
-function create_bullet_debri(b_m = material.iron){
+function create_bullet_debri(b_m = "default"){
 	var _a = instance_create_depth(x, y, 10, obj_fixed_remain);
 	_a.direction =  90 + random_range(-8,8);
-	_a.speed = random_range(2,4);
-	_a.speed_decay = random_range(0.4,0.01);
+	_a.speed = random_range(2,3);
+	_a.speed_decay = random_range(0.4,0.05);
 	_a.minimun_barrier = random(3)*-1;
 	_a.alpha_decay = 0.00001;
 	_a.angle_variation = [-5,-5]
-	_a.sprite_index = spr_bullets_remains_iron;
+	if(b_m == "default"){
+		_a.sprite_index = spr_bullets_remains_iron;
+	}else if(b_m == "shotgun"){
+		_a.sprite_index = spr_bullets_remains_shotgun;
+	}
 	_a.image_speed = 0;
 	_a.image_index = irandom(sprite_get_number(_a.sprite_index)-1);
 	_a.image_angle = random(360);
@@ -18,7 +22,7 @@ function create_bullet_debri(b_m = material.iron){
 
 
 //Anything happens when those things are true
-if(global.game and !global.pause_menu){
+if(global.game_active and !global.game_paused){
 
 
 #region guns_functions
@@ -52,10 +56,15 @@ function shotgun(target_x,traget_y,trigger){
 					_cooldown*=2
 					_a.speed=2.5
 				}else{
+					//screenshake
+					if(instance_exists(obj_camera)){
+						obj_camera.shake_start(8,5)
+					}
 					_a.current_alegiance = bullet_alegiance.player
 				}
+				
 			}
-
+			create_bullet_debri("shotgun")
 			//Cooldown de tiro
 			alarm[0] = _cooldown
 			can_shoot = false
@@ -75,6 +84,7 @@ function shotgun(target_x,traget_y,trigger){
 			_b.image_angle = image_angle+180
 			_b.image_yscale = .4;
 			_b.image_blend = make_color_rgb(255,177,0);
+
 		}
 
 		// Animação do recuo
@@ -161,11 +171,11 @@ function uzi(target_x,traget_y,trigger){
 			//_a.image_index = 3 // bullet image 
 			_a.damage = dmg;
 			
-			var _cooldown = 5
+			var _cooldown = shooting_cooldown
 			
 			if(current_state == item_state.onenemy){
 				_a.current_alegiance = bullet_alegiance.enemy
-				_cooldown*=3
+				_cooldown*=1.5
 				_a.speed = 3;
 			}else{
 				_a.current_alegiance = bullet_alegiance.player
@@ -375,7 +385,7 @@ function anubis_wand(target_x,traget_y,trigger){
 				_a.current_alegiance = bullet_alegiance.enemy
 				_a.speed = global.gun_data_list[current_type].bullet_speed*.9
 				_a.speed_variation =-0.001
-				_cooldown*=3
+				_cooldown*=1.5
 			}else{
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = global.gun_data_list[current_type].bullet_speed
@@ -433,9 +443,13 @@ function oxford(target_x,traget_y,trigger){
 			var _cooldown = shooting_cooldown
 			if(current_state == item_state.onenemy){
 				_a.current_alegiance = bullet_alegiance.enemy
-				_cooldown*=3
+				_cooldown*=1.5
 				_a.speed = global.gun_data_list[current_type].bullet_speed;
 			}else{
+				//screenshake
+				if(instance_exists(obj_camera)){
+					obj_camera.shake_start(5,2)
+				}
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = 20;
 			}
@@ -459,6 +473,8 @@ function oxford(target_x,traget_y,trigger){
 			_b.image_angle = image_angle+180
 			_b.image_yscale = .4;
 			_b.image_blend = make_color_rgb(255,177,0);
+			
+			create_bullet_debri()
 		}
 
 		// Animação do recuo
@@ -469,7 +485,6 @@ function oxford(target_x,traget_y,trigger){
 		}
 		
 
-		
 }
 function hardM(target_x,traget_y,trigger){
 		shooting_cooldown = global.gun_data_list[current_type].cooldown
@@ -494,11 +509,15 @@ function hardM(target_x,traget_y,trigger){
 			var _cooldown = shooting_cooldown
 			if(current_state == item_state.onenemy){
 				_a.current_alegiance = bullet_alegiance.enemy
-				_cooldown*=3
+				_cooldown*=1.5
 				_a.speed = global.gun_data_list[current_type].bullet_speed;
 			}else{
+				//screenshake
+				if(instance_exists(obj_camera)){
+					obj_camera.shake_start(8,3)
+				}
 				_a.current_alegiance = bullet_alegiance.player
-				_a.speed = 20;
+				_a.speed =  global.gun_data_list[current_type].bullet_speed;
 			}
 			//Cooldown de tiro
 			alarm[0] = global.gun_data_list[current_type].cooldown
@@ -532,6 +551,8 @@ function hardM(target_x,traget_y,trigger){
 		
 
 		
+
+		
 }
 function auto_pulse_rifle(target_x,traget_y,trigger){
 		shooting_cooldown = global.gun_data_list[current_type].cooldown
@@ -559,7 +580,7 @@ function auto_pulse_rifle(target_x,traget_y,trigger){
 			var _cooldown = shooting_cooldown
 			if(current_state == item_state.onenemy){
 				_a.current_alegiance = bullet_alegiance.enemy
-				_cooldown*=4
+				_cooldown*=2
 				_a.speed = global.gun_data_list[current_type].bullet_speed/2;
 			}else{
 				_a.current_alegiance = bullet_alegiance.player
@@ -631,12 +652,16 @@ function m4o4(target_x,traget_y,trigger){
 			_a.image_blend = make_color_rgb(255,177,0);
 			_a.image_index = 0 // bullet image 
 			_a.properties.damage = dmg;
-			var _cooldown = 4
+			var _cooldown = shooting_cooldown
 			if(current_state == item_state.onenemy){
 				_a.current_alegiance = bullet_alegiance.enemy
-				_cooldown*=3
+				_cooldown*=1.5
 				_a.speed = 3;
 			}else{
+				//screenshake
+				if(instance_exists(obj_camera)){
+					obj_camera.shake_start(4,2)
+				}
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = 20;
 			}
@@ -839,14 +864,18 @@ function eagles_colt(target_x,traget_y,trigger){
 			_a.current_material = material.iron; //Define o material do projetil;
 			_a.image_blend = c_yellow
 			_a.speed_variation = - 0.01
-			var _cooldown = 15//global.gun_data_list[current_type].cooldown;
+			var _cooldown = global.gun_data_list[current_type].cooldown;
 			
 			if(current_state == item_state.onenemy){
 				_a.current_alegiance = bullet_alegiance.enemy
 				_a.speed = global.gun_data_list[current_type].bullet_speed*.5
 				_a.speed_variation =-0.001
-				_cooldown*=3
+				_cooldown*=2
 			}else{
+				//screenshake
+				if(instance_exists(obj_camera)){
+					obj_camera.shake_start(5,5)
+				}
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = global.gun_data_list[current_type].bullet_speed
 			}
@@ -903,7 +932,7 @@ function ak47(target_x,traget_y,trigger){
 			_a.image_xscale = 1.5
 			_a.image_yscale = .5;
 			_a.ligth_radious = 16;
-			_a.properties.bounciness = 1 //Pode Ricochetear duas vezes na parede;
+			_a.properties.bounciness = 0 //Pode Ricochetear duas vezes na parede;
 			_a.properties.bounciness_speed_reduction = random_range(5.0,12.0)//Reduz em 0.5 a velocidade ao ricochetear
 			_a.properties.draw_halo = true;
 			_a.properties.halo_color = make_color_rgb(255,177,0);
@@ -918,12 +947,16 @@ function ak47(target_x,traget_y,trigger){
 			_a.image_blend = make_color_rgb(255,177,0);
 			_a.image_index = 3 // bullet image 
 			_a.damage = dmg;
-			var _cooldown = 5
+			var _cooldown = shooting_cooldown
 			if(current_state == item_state.onenemy){
 				_a.current_alegiance = bullet_alegiance.enemy
-				_cooldown*=3
+				_cooldown*=1.5
 				_a.speed = floor(_spd/5);
 			}else{
+				//screenshake
+				if(instance_exists(obj_camera)){
+					obj_camera.shake_start(5,2)
+				}
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = _spd;
 			}
@@ -949,10 +982,6 @@ function ak47(target_x,traget_y,trigger){
 			_b.image_blend = make_color_rgb(255,177,0);
 			
 			create_bullet_debri()
-			//screenshake
-			if(instance_exists(obj_camera)){
-				obj_camera.shake_start(10,10)
-			}
 		}
 
 		// Animação do recuo
@@ -971,6 +1000,7 @@ function ak47(target_x,traget_y,trigger){
 
 switch(current_state){
 	case item_state.onground:
+		persistent = false
 		visible = true
 		image_xscale = 1
 		// Animação de flutuar
@@ -1001,7 +1031,7 @@ switch(current_state){
 	break;
 	case item_state.onInventory:
 		visible = false;
-		
+		persistent = true
 		//Switch to onHand
 		if(global.inventory_gun_slot_selected_current == current_inventory_slot){
 			current_state = item_state.onhand
@@ -1037,8 +1067,8 @@ switch(current_state){
 				case item_kind.ak47:ak47(aim_x,aim_y,mouse_check_button(mb_left)); break;
 				case item_kind.double_barrel_shotgun: shotgun(aim_x,aim_y,mouse_check_button_pressed(mb_left)); break;
 				case item_kind.deers_wand: deers_wand(aim_x,aim_y,mouse_check_button_pressed(mb_left)); break;
-				case item_kind.eagles_colt: eagles_colt(aim_x,aim_y,mouse_check_button(mb_left)); break;
-				case item_kind.g32: eagles_colt(aim_x,aim_y,mouse_check_button(mb_left)); break;
+				case item_kind.eagles_colt: eagles_colt(aim_x,aim_y,mouse_check_button_pressed(mb_left)); break;
+				case item_kind.g32: eagles_colt(aim_x,aim_y,mouse_check_button_pressed(mb_left)); break;
 				case item_kind.firethrower: firethrower(aim_x,aim_y,mouse_check_button(mb_left)); break;
 			}
 		}else{
@@ -1062,6 +1092,7 @@ switch(current_state){
 	break;
 	
 	case item_state.onenemy:
+		persistent = false
 		visible = true
 		if(instance_exists(current_parent)){
 			var _condition = distance_to_object(obj_player)<=global.gun_data_list[current_type].attack_range

@@ -1,14 +1,19 @@
 function firethrower(target_x,traget_y){
-		var _dmg = 2
+		var _dmg = 3
 
 		//Config da bala
 		var _a = instance_create_depth(x+random_range(-4,4), y+random_range(-4,4), depth-1, obj_bullet);
-		_a.direction = point_direction(x,y,target_x,traget_y)+random_range(-10,10) //Inprecisão da arma
+		_a.direction = point_direction(x,y,target_x,traget_y)+random_range(-10,10)-flame_direction_changer //Inprecisão da arma
 		_a.image_angle = random(360);
 		_a.speed = 5;
 		_a.image_speed = choose(.5,.6,.7) 
 		_a.sprite_index = spr_fire_particle;
 		_a.damage = _dmg;
+		
+		if(alarm[2]>0  and flame_direction_changer<0){
+			flame_direction_changer+=2.5
+		}
+		
 		if(traget_y>y){
 			_a.direction_controled_variation = -1
 		}else{
@@ -31,7 +36,7 @@ function firethrower(target_x,traget_y){
 }
 
 
-if(global.game and !global.pause_menu){
+if(global.game_active and !global.game_paused){
 	
 	function default_state_machine(){
 		
@@ -41,10 +46,14 @@ if(global.game and !global.pause_menu){
 
 		if(instance_exists(obj_player)){
 			var _dist = distance_to_point(obj_player.x,obj_player.y)
-			if(_dist <= atack_range){
-				current_state = states.attacking;
-			}else if(_dist <= seeking_range and alarm[2]<0){
-				alarm[2] = 180
+			if(_dist<=seeking_range or has_seen_player){
+				if(_dist <= atack_range){
+					current_state = states.attacking;
+				}else if(_dist <= seeking_range and alarm[2]<0){
+					alarm[2] = 180
+				}else if(alarm[2]<0){
+					current_state = states.moving_at_player
+				}
 			}
 		}else{
 			current_state = states.idle;

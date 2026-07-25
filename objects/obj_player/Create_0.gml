@@ -3,7 +3,8 @@ spd = 2.5; // Velocidade do jogador
 vida = global.player_status.current_life;
 max_vida = global.player_status.max_life;
 
-
+hsp = 0
+vsp =0
 
 //efeitos
 genDust = true

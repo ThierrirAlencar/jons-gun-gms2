@@ -1,1 +1,0 @@
-current_type = item_kind.anubis_wand

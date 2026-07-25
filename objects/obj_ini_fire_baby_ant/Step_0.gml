@@ -2,7 +2,7 @@
 event_inherited();
 
 
-if(global.game and !global.pause_menu){
+if(global.game_active and !global.game_paused){
 	
 	function default_state_machine(){
 	

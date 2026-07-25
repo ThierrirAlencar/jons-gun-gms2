@@ -13,10 +13,10 @@ function scr_setWeaponsDataList(){
 			type:item_type.weapom,
 			item_name:"ak47",
 			attack_range:250,
-			cooldown:4,
+			cooldown:16,
 			bulletCount:1,
 			bullet_damage:6,
-			bullet_speed:30
+			bullet_speed:15
 		},
 		{
 			type:item_type.weapom,
@@ -31,9 +31,9 @@ function scr_setWeaponsDataList(){
 			type:item_type.weapom,
 			item_name:"uzi",
 			attack_range:150,
-			cooldown:5,
+			cooldown:6,
 			bulletCount:1,
-			bullet_damage:4,
+			bullet_damage:5,
 			bullet_speed:20
 		},
 		{
@@ -67,7 +67,7 @@ function scr_setWeaponsDataList(){
 			type:item_type.weapom,
 			item_name:"oxford",
 			attack_range:150,
-			cooldown:6,
+			cooldown:10,
 			bulletCount:1,
 			bullet_damage:5,
 			bullet_speed:22
@@ -87,7 +87,7 @@ function scr_setWeaponsDataList(){
 			attack_range:100,
 			cooldown:20,
 			bulletCount:2,
-			bullet_damage:12,
+			bullet_damage:15,
 			bullet_speed:7
 		},
 		{
@@ -96,17 +96,17 @@ function scr_setWeaponsDataList(){
 			attack_range:90,
 			cooldown:35,
 			bulletCount:6,
-			bullet_damage:7,
+			bullet_damage:6,
 			bullet_speed:8
 		},
 		{
 			type:item_type.weapom,
 			item_name:"m4a4",
 			attack_range:250,
-			cooldown:5,
+			cooldown:11,
 			bulletCount:1,
-			bullet_damage:7,
-			bullet_speed:30
+			bullet_damage:6,
+			bullet_speed:15
 		},
 		{
 			type:item_type.weapom,
@@ -132,16 +132,16 @@ function scr_setWeaponsDataList(){
 			attack_range:250,
 			cooldown:35,
 			bulletCount:1,
-			bullet_damage:7.5,
+			bullet_damage:17,
 			bullet_speed:20
 		},
 		{
 			type:item_type.weapom,
 			item_name:"G32",
 			attack_range:250,
-			cooldown:16,
+			cooldown:30,
 			bulletCount:1,
-			bullet_damage:5,
+			bullet_damage:10,
 			bullet_speed:18
 		},
 	]

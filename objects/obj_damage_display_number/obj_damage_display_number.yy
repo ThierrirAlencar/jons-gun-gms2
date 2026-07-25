@@ -13,7 +13,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"display_numbers",
-    "path":"folders/Objetos/effects/display_numbers.yy",
+    "path":"folders/Objetos/effects/notifications/display_numbers.yy",
   },
   "parentObjectId":null,
   "persistent":false,

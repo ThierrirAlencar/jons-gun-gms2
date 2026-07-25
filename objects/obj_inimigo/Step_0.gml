@@ -1,6 +1,6 @@
 
 
-if(global.game and !global.pause_menu){
+if(global.game_active and !global.game_paused){
 	//feito no formato de função para que apenas aqueles que usarem os states sejam afetados
 	function default_state_machine(){
 		if(current_gun == noone){
@@ -10,6 +10,11 @@ if(global.game and !global.pause_menu){
 			if(instance_exists(obj_player)){
 				if(distance_to_object(obj_player)<=seeking_range or has_seen_player){
 					current_state = states.moving_at_player
+					if(!has_seen_player){
+						var _b =instance_create_depth(x+choose(-16,16),y+random_range(-16,16),depth-2,obj_detection_display_number)
+						_b.yspeed = random_range(0.5,1);
+						_b.alarm[0] = 30
+					}
 					has_seen_player = true
 				}
 			}else{

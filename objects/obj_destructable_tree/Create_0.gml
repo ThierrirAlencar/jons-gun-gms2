@@ -9,11 +9,13 @@ u_windStrength   = shader_get_uniform(grass_shader, "u_windStrength")
 u_windScale      = shader_get_uniform(grass_shader, "u_windScale")
 	
 //Wind less potent cuz i guess so :)
-grass_wind_speed    = 1.2
-grass_wind_strength = 2.3
-grass_wind_scale    = 0.02
+grass_wind_speed    = 2.25
+grass_wind_strength = 1.3
+grass_wind_scale    = 0.16
 
 can_hold_a_bullet = false;
 
 //Really huge life
-life = 99
+life = 999
+
+breakeable = false

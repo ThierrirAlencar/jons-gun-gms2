@@ -1,5 +1,5 @@
 
-if(global.game){
+if(global.game_active){
 	if(surface_exists(global.ambient_surface_light)){
 		if(fluctuate){
 			float_timer += float_speed;

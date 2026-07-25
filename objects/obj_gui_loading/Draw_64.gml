@@ -12,11 +12,11 @@ scr_text_wave((_w/2)-(_str_length/2),_h/2,10,10,"loading...")
 
 _str_length = string_length(choosen_tip)*12;
 
-scr_text_wave((_w/2)-(_str_length/2),(_h/2)+50,10,10,choosen_tip)
+scr_text_wave((_w/2)-(_str_length/2),(_h/2)+50,2,2,choosen_tip)
 
 
-var _string = "Now heading towards: " + stages_labels[global.game_stage] + " - Level : " + string(global.game_stage)
+var _string = "Now heading towards: " + stages_labels[global.session.stage] + " - Level : " + string(global.session.stage)
 
 _str_length = string_length(_string)*12;
-scr_text_wave((_w/2)-(_str_length/2),(_h/2)+100,10,10,_string)
+scr_text_wave((_w/2)-(_str_length/2),(_h/2)+100,1,1,_string)
 draw_set_colour(c_white)   

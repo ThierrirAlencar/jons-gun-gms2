@@ -1,5 +1,7 @@
 
-life -- 
+if(breakeable == true){
+	life -- 
+}
 
 if(other.current_material == material.fiire and flamable){
 	repeat(irandom(3)){

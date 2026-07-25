@@ -4,7 +4,7 @@ image_speed = 0;
 image_index = irandom(image_number-1)
 
 life = 1; 
-
+breakeable = true
 
 //Properties
 flamable = false; //defines either the object can be set on fire 

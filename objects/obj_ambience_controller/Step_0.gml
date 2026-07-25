@@ -1,4 +1,4 @@
-depth = -9999
+depth = -99999999
 var _w = room_width
 var _h = room_height
 
@@ -6,7 +6,7 @@ var _layer = layer_get_id("layer_ambience_active");
 if(!_layer){_layer = layer_create(-10,"layer_ambience_active")}
 
 
-if(global.game and is_raining){
+if(global.game_active and is_raining){
 	
 	edge = 200
 	
