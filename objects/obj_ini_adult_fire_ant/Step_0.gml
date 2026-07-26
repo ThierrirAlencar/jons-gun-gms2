@@ -51,7 +51,7 @@ if(global.game_active and !global.game_paused){
 					current_state = states.attacking;
 				}else if(_dist <= seeking_range and alarm[2]<0){
 					alarm[2] = 180
-				}else if(alarm[2]<0){
+				}else {
 					current_state = states.moving_at_player
 				}
 			}

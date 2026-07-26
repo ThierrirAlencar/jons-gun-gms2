@@ -11,6 +11,13 @@ function scr_config(){
 	
 	//Mouse Sensitivity
 	global.config_mouse_sense = 0.4 //Higher = Faster
+
+	//Global Audio Stuff
+	global.config_master_volume = 0.5
+	global.config_sfx_volume = 0.5
+	global.config_music_volume = 0.5
+
+
 }
 
 function scr_load_enums(){
@@ -46,6 +53,11 @@ function scr_load_enums(){
 		sand,
 		mountain,
 		snow
+	}
+	
+	enum fire_mode_type {
+		single,
+		spray
 	}
 	#region itens 
 		enum item_kind {

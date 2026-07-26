@@ -181,27 +181,13 @@ function scr_set_stage_configuration(){
 											create_function: function (_x, _y){
 											                var _layer = layer_get_id("layer_instances_active");
 											                var _en = instance_create_layer(_x,_y,_layer, obj_ini_adult_fire_ant);
-											                /*var _weapons = [
-											                     item_kind.firethrower,
-																 item_kind.firethrower
-											                ]
-											               //var _c_gun = _weapons[irandom(1)];
-                
-											                var _w = instance_create_layer(_x,_y,_layer, obj_gun_item)
-											                _w.current_parent = _en;
-											                _w.current_state = item_state.onenemy;
-											                _w.current_type = _c_gun;
-															_w.should_ever_be_visible = false;
-															_w.visible = false
-											                _en.current_gun = _w;
-															*/
 											            },
 								        },
 				],
 				wheater_stage_config:{ //Configurações de Clima
-					ambient_light_brightness:.45, //Iluminação
+					ambient_light_brightness:.35, //Iluminação
 					rain_height:40, //Altura da chuva
-					number_of_rain: 20, //Número de particulas de chuva spawnadas
+					number_of_rain: 10, //Número de particulas de chuva spawnadas
 					is_raining:true, //Se a chuva é permanente ou não
 				},
 				generation_config:{ //Configurações de geração de mundo

@@ -24,6 +24,9 @@ recoil_timer = 0;       // Timer para controlar a interpolação
 recoil_x = 0;           // Armazena o deslocamento X
 recoil_y = 0;           // Armazena o deslocamento Y
 
+//Controle de spray
+fire_mode = fire_mode_type.single // ou fire_mode_type.spray, dependendo da arma
+trigger_previous = false; // guarda o estado do trigger do frame anterior, pra detectar o "clique"
 
 // Controle da flutuação
 float_amplitude = 0.3; // Intensidade do movimento vertical

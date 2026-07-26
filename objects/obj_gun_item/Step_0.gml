@@ -60,6 +60,10 @@ function shotgun(target_x,traget_y,trigger){
 					if(instance_exists(obj_camera)){
 						obj_camera.shake_start(8,5)
 					}
+					
+					//efeito sonoro
+					var _pitch_variation =  current_type == item_kind.shotgun ? [1,1.5] : [1.3,1.8]
+					scr_sfx_play(snd_guns_shotgun_20gauge,global.config_sfx_volume*0.75,1,_pitch_variation)
 					_a.current_alegiance = bullet_alegiance.player
 				}
 				
@@ -68,6 +72,8 @@ function shotgun(target_x,traget_y,trigger){
 			//Cooldown de tiro
 			alarm[0] = _cooldown
 			can_shoot = false
+			
+			
 			
 			// Calcula o deslocamento do recuo
 			var recoil_dir = image_angle + 180;
@@ -126,8 +132,13 @@ function sword(target_x,traget_y,trigger){
 			
 			can_shoot = false
 			alarm[0] = shooting_cooldown
-				
+			if(current_state == item_state.onhand){
+				//efeito sonoro
+				scr_sfx_play(snd_guns_melee_blade_single_shot,global.config_sfx_volume)
+			}
 		}
+		
+
 
 		// Animação do recuo
 		if (recoil_timer > 0) {
@@ -180,6 +191,8 @@ function uzi(target_x,traget_y,trigger){
 			}else{
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = 20;
+				var _pitch_variation =  [1,1.5] 
+				scr_sfx_play(snd_guns_handguns_single_shot_9mm,global.config_sfx_volume*0.75,1,_pitch_variation)
 			}
 			//Cooldown de tiro
 			alarm[0] = _cooldown
@@ -452,6 +465,9 @@ function oxford(target_x,traget_y,trigger){
 				}
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = 20;
+				//efeito sonoro
+				var _pitch_variation = [1,1.5]
+				scr_sfx_play(snd_guns_rifles_not_identified,global.config_sfx_volume*0.75,1,_pitch_variation)
 			}
 			//Cooldown de tiro
 			alarm[0] = global.gun_data_list[current_type].cooldown
@@ -583,6 +599,14 @@ function auto_pulse_rifle(target_x,traget_y,trigger){
 				_cooldown*=2
 				_a.speed = global.gun_data_list[current_type].bullet_speed/2;
 			}else{
+				
+				//screenshake
+				if(instance_exists(obj_camera)){
+					obj_camera.shake_start(2,3)
+				}
+				//efeito sonoro
+				var _pitch_variation = [1,1.30]
+				scr_sfx_play(snd_guns_energy_weapons_laser_rifle,global.config_sfx_volume,1,_pitch_variation)
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = global.gun_data_list[current_type].bullet_speed;
 			}
@@ -662,6 +686,11 @@ function m4o4(target_x,traget_y,trigger){
 				if(instance_exists(obj_camera)){
 					obj_camera.shake_start(4,2)
 				}
+				
+				//efeito sonoro
+				var _pitch_variation = [1,1.5]
+				scr_sfx_play(snd_guns_rifle_single_shot,global.config_sfx_volume*0.75,1,_pitch_variation)
+				
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = 20;
 			}
@@ -876,6 +905,9 @@ function eagles_colt(target_x,traget_y,trigger){
 				if(instance_exists(obj_camera)){
 					obj_camera.shake_start(5,5)
 				}
+				//efeito sonoro
+				var _pitch_variation = current_type== item_kind.eagles_colt ? [2,2.5] : [1,1.25]
+				scr_sfx_play(snd_guns_handguns_single_shot_556,global.config_sfx_volume,1,_pitch_variation)
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = global.gun_data_list[current_type].bullet_speed
 			}
@@ -957,6 +989,10 @@ function ak47(target_x,traget_y,trigger){
 				if(instance_exists(obj_camera)){
 					obj_camera.shake_start(5,2)
 				}
+				//efeito sonoro
+				var _pitch_variation = [1,1.5]
+				scr_sfx_play(snd_guns_rifle_ak47_single_shot,global.config_sfx_volume*0.75,1,_pitch_variation)
+				//snd_guns_rifle_ak47_spra
 				_a.current_alegiance = bullet_alegiance.player
 				_a.speed = _spd;
 			}
