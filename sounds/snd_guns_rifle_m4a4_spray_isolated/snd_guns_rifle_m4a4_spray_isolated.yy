@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_guns_rifle_m4a4_spray_isolated",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.25,
+  "exportDir":"",
+  "name":"snd_guns_rifle_m4a4_spray_isolated",
+  "parent":{
+    "name":"rifles",
+    "path":"folders/Sons/weapons/rifles.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_guns_rifle_m4a4_spray_isolated.mp3",
+  "volume":1.0,
+}

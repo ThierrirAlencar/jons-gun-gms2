@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_guns_rocket_launch",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.5692517,
+  "exportDir":"",
+  "name":"snd_guns_rocket_launch",
+  "parent":{
+    "name":"rockets",
+    "path":"folders/Sons/weapons/rockets.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_guns_rocket_launch.wav",
+  "volume":1.0,
+}

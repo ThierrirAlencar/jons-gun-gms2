@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_guns_energy_weapons_plasma_rifle",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.5709977,
+  "exportDir":"",
+  "name":"snd_guns_energy_weapons_plasma_rifle",
+  "parent":{
+    "name":"energy_weapons",
+    "path":"folders/Sons/weapons/energy_weapons.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_guns_energy_weapons_plasma_rifle.wav",
+  "volume":1.0,
+}

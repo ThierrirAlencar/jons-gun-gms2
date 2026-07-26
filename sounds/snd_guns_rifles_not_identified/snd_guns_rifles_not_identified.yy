@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_guns_rifles_not_identified",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.3559637,
+  "exportDir":"",
+  "name":"snd_guns_rifles_not_identified",
+  "parent":{
+    "name":"weapons",
+    "path":"folders/Sons/weapons.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_guns_rifles_not_identified.wav",
+  "volume":1.0,
+}
